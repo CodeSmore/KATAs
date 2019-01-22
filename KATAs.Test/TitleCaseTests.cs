@@ -10,7 +10,7 @@ namespace KATAs.Test
         {
             TitleCase titleCase = new TitleCase();
 
-            Assert.AreEqual("apple", titleCase.GetTitleCase("apple", ""));
+            Assert.AreEqual("Apple", titleCase.GetTitleCase("Apple", ""));
         }
 
         [TestMethod]

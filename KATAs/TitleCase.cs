@@ -17,7 +17,20 @@ namespace KATAs
     {
         public string GetTitleCase(string title, string minorWords = "")
         {
-            string result = title;
+            string result = "";
+
+            foreach (char character in title)
+            {
+                if (character == 'a')
+                {
+                    result += Char.ToUpper(character);
+                }
+                else
+                {
+                    result += character;
+                }
+            }
+
 
             return result;
         }
