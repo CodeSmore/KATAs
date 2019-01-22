@@ -21,18 +21,30 @@ namespace KATAs
 
             foreach (char character in title)
             {
-                if (character == 'a')
+                if (TitleAndMinorWordsAreTheSame(title, minorWords))
                 {
-                    result += Char.ToUpper(character);
+                    result = title;
                 }
                 else
                 {
-                    result += character;
+                    if (character == 'a')
+                    {
+                        result += Char.ToUpper(character);
+                    }
+                    else
+                    {
+                        result += character;
+                    }
                 }
             }
 
 
             return result;
+        }
+
+        bool TitleAndMinorWordsAreTheSame(string title, string minorWords)
+        {
+            return (title == minorWords);
         }
     }
 }
