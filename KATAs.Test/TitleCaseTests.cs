@@ -20,5 +20,13 @@ namespace KATAs.Test
 
             Assert.AreEqual("Apple", titleCase.GetTitleCase("apple", ""));
         }
+
+        [TestMethod]
+        public void Test003_GivenTitleCase_GetTitleCaseReturnsInputWithFirstLetterLowerCaseDueToMinorWordsParameter()
+        {
+            TitleCase titleCase = new TitleCase();
+
+            Assert.AreEqual("apple", titleCase.GetTitleCase("apple", "apple"));
+        }
     }
 }
