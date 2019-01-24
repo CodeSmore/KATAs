@@ -27,7 +27,7 @@ namespace KATAs
                 }
                 else
                 {
-                    if (character == 'a')
+                    if (character == title[0])
                     {
                         result += Char.ToUpper(character);
                     }
