@@ -19,6 +19,8 @@ namespace KATAs.Test
             TitleCase titleCase = new TitleCase();
 
             Assert.AreEqual("Apple", titleCase.GetTitleCase("apple", ""));
+
+            Assert.AreEqual("Knife", titleCase.GetTitleCase("knife", ""));
         }
 
         [TestMethod]
@@ -29,12 +31,12 @@ namespace KATAs.Test
             Assert.AreEqual("apple", titleCase.GetTitleCase("apple", "apple"));
         }
 
-        [TestMethod]
-        public void Test004_GivenTitleCase_GetTitleCaseReturnsLowerCaseFirstWordUpperCaseSecondWord()
-        {
-            TitleCase titleCase = new TitleCase();
+        //[TestMethod]
+        //public void Test004_GivenTitleCase_GetTitleCaseReturnsLowerCaseFirstWordUpperCaseSecondWord()
+        //{
+        //    TitleCase titleCase = new TitleCase();
 
-            Assert.AreEqual("apple Pie", titleCase.GetTitleCase("apple pie", "apple"));
-        }
+        //    Assert.AreEqual("apple Pie", titleCase.GetTitleCase("apple pie", "apple"));
+        //}
     }
 }
