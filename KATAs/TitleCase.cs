@@ -10,6 +10,7 @@ separated by a space. Your function should ignore the case of the minor words st
  */
 
 using System;
+using System.Collections.Generic;
 
 namespace KATAs
 {
@@ -40,6 +41,13 @@ namespace KATAs
 
 
             return result;
+        }
+
+        public List<string> GetWordsFromString(string stringOfWords)
+        {
+            List<string> resultStrings = new List<string>();
+
+            return resultStrings;
         }
 
         bool TitleAndMinorWordsAreTheSame(string title, string minorWords)

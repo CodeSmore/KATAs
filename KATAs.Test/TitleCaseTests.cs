@@ -1,4 +1,5 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Collections.Generic;
 
 namespace KATAs.Test
 {
@@ -20,6 +21,8 @@ namespace KATAs.Test
 
             Assert.AreEqual("Apple", titleCase.GetTitleCase("apple", ""));
 
+            // The issue wasn't that I needed to add this second assert, but that I skipped the 'refactor' step of 'Red, Green, Refactor' 
+            // to eliminate the magic character
             Assert.AreEqual("Knife", titleCase.GetTitleCase("knife", ""));
         }
 
@@ -31,12 +34,17 @@ namespace KATAs.Test
             Assert.AreEqual("apple", titleCase.GetTitleCase("apple", "apple"));
         }
 
-        //[TestMethod]
-        //public void Test004_GivenTitleCase_GetTitleCaseReturnsLowerCaseFirstWordUpperCaseSecondWord()
-        //{
-        //    TitleCase titleCase = new TitleCase();
+        [TestMethod]
+        public void Test004_GivenTitleCase_GetWordsFromStringMethodReturnsListOfCorrectStrings()
+        {
+            TitleCase titleCase = new TitleCase();
 
-        //    Assert.AreEqual("apple Pie", titleCase.GetTitleCase("apple pie", "apple"));
-        //}
+            List<string> resultList = new List<string>();
+            resultList.Add("this");
+            resultList.Add("is");
+            resultList.Add("easy");
+
+            Assert.AreEqual(resultList, titleCase.GetWordsFromString("this is easy"));
+        }
     }
 }
