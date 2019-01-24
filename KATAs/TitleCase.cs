@@ -20,25 +20,31 @@ namespace KATAs
         {
             string result = "";
 
-            foreach (char character in title)
+            foreach (string word in GetWordsFromString(title))
             {
-                if (TitleAndMinorWordsAreTheSame(title, minorWords))
+                foreach (char character in word)
                 {
-                    result = title;
-                }
-                else
-                {
-                    if (character == title[0])
+                    if (TitleAndMinorWordsAreTheSame(word, minorWords))
                     {
-                        result += Char.ToUpper(character);
+                        result = title;
                     }
                     else
                     {
-                        result += character;
+                        if (character == word[0])
+                        {
+                            if (result != "")
+                            {
+                                result += " ";
+                            }
+                            result += Char.ToUpper(character);
+                        }
+                        else
+                        {
+                            result += character;
+                        }
                     }
                 }
             }
-
 
             return result;
         }
