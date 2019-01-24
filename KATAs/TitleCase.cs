@@ -47,6 +47,22 @@ namespace KATAs
         {
             List<string> resultStrings = new List<string>();
 
+            string word = "";
+            foreach (char character in stringOfWords)
+            {
+                if (character != ' ')
+                {
+                    word += character;
+                }
+                else
+                {
+                    resultStrings.Add(word);
+                    word = "";
+                }
+            }
+
+            resultStrings.Add(word);
+
             return resultStrings;
         }
 

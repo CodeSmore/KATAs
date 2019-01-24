@@ -39,12 +39,12 @@ namespace KATAs.Test
         {
             TitleCase titleCase = new TitleCase();
 
-            List<string> resultList = new List<string>();
-            resultList.Add("this");
-            resultList.Add("is");
-            resultList.Add("easy");
+            List<string> expectedResultList = new List<string>();
+            expectedResultList.Add("this");
+            expectedResultList.Add("is");
+            expectedResultList.Add("easy");
 
-            Assert.AreEqual(resultList, titleCase.GetWordsFromString("this is easy"));
+            CollectionAssert.AreEqual(expectedResultList, titleCase.GetWordsFromString("this is easy"));
         }
     }
 }
