@@ -11,7 +11,7 @@ namespace KATAs.Test
         {
             TitleCase titleCase = new TitleCase();
 
-            Assert.AreEqual("Apple", titleCase.GetTitleCase("Apple", ""));
+            Assert.AreEqual("Apple", titleCase.GetTitleCase("Apple"));
         }
 
         [TestMethod]
@@ -19,11 +19,11 @@ namespace KATAs.Test
         {
             TitleCase titleCase = new TitleCase();
 
-            Assert.AreEqual("Apple", titleCase.GetTitleCase("apple", ""));
+            Assert.AreEqual("Apple", titleCase.GetTitleCase("apple"));
 
             // The issue wasn't that I needed to add this second assert, but that I skipped the 'refactor' step of 'Red, Green, Refactor' 
             // to eliminate the magic character
-            Assert.AreEqual("Knife", titleCase.GetTitleCase("knife", ""));
+            Assert.AreEqual("Knife", titleCase.GetTitleCase("knife"));
         }
 
         [TestMethod]
@@ -45,6 +45,14 @@ namespace KATAs.Test
             expectedResultList.Add("easy");
 
             CollectionAssert.AreEqual(expectedResultList, titleCase.GetWordsFromString("this is easy"));
+        }
+
+        [TestMethod]
+        public void Test005_GivenTitleCase_GetTitleCaseReturnsInputWithFirstLettersOfTwoWordsCapitalized()
+        {
+            TitleCase titleCase = new TitleCase();
+
+            Assert.AreEqual("Apple Pie", titleCase.GetTitleCase("apple pie"));
         }
     }
 }
