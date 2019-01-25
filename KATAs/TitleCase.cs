@@ -24,6 +24,11 @@ namespace KATAs
             bool skipTitleCasing = false;
             int titleWordIndex = 0;
 
+            if (minorWords == null)
+            {
+                minorWords = "";
+            }
+
             List<string> titleWords = GetWordsFromString(title);
             foreach (string word in titleWords)
             {

@@ -104,5 +104,13 @@ namespace KATAs.Test
 
             Assert.AreEqual("Ab", titleCase.GetTitleCase("ab", "ab"));
         }
+
+        [TestMethod]
+        public void Test012_GivenTitleCase_GetTitleCaseTreatsNullMinorWordsParameterAsBlankString()
+        {
+            TitleCase titleCase = new TitleCase();
+
+            Assert.AreEqual("Abc Def Ghi", titleCase.GetTitleCase("aBC deF Ghi", null));
+        }
     }
 }
