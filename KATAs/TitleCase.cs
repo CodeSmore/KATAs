@@ -41,6 +41,7 @@ namespace KATAs
 
                 if (!skipTitleCasing)
                 {
+                    int characterIndex = 0;
                     foreach (char character in word)
                     {
                         if (TitleAndMinorWordsAreTheSame(word, minorWords))
@@ -49,8 +50,10 @@ namespace KATAs
                         }
                         else
                         {
-                            result += AddWordOneCharacterAtATime(character, word[0], result);
+                            result += AddWordOneCharacterAtATime(character, word[0], result, characterIndex);
                         }
+
+                        characterIndex++;
                     }
                 }
 
@@ -60,11 +63,11 @@ namespace KATAs
             return result;
         }
 
-        string AddWordOneCharacterAtATime(char character, char firstCharacterOfWord, string previousResult)
+        string AddWordOneCharacterAtATime(char character, char firstCharacterOfWord, string previousResult, int characterIndex)
         {
             string result = "";
 
-            if (character == firstCharacterOfWord)
+            if (character == firstCharacterOfWord && characterIndex == 0)
             {
                 if (previousResult != "")
                 {
