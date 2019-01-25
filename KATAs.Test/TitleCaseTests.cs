@@ -31,7 +31,7 @@ namespace KATAs.Test
         {
             TitleCase titleCase = new TitleCase();
 
-            Assert.AreEqual("apple", titleCase.GetTitleCase("apple", "apple"));
+            Assert.AreEqual("An apple", titleCase.GetTitleCase("an apple", "apple"));
         }
 
         [TestMethod]

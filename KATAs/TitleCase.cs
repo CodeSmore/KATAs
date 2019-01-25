@@ -45,15 +45,8 @@ namespace KATAs
                     int characterIndex = 0;
                     foreach (char character in word)
                     {
-                        if (TitleAndMinorWordsAreTheSame(word, minorWords))
-                        {
-                            result = title;
-                        }
-                        else
-                        {
-                            result += AddWordOneCharacterAtATime(character, word[0], result, characterIndex);
-                        }
-
+                        result += AddWordOneCharacterAtATime(character, word[0], result, characterIndex);
+                        
                         characterIndex++;
                     }
                 }
@@ -113,11 +106,6 @@ namespace KATAs
             resultStrings.Add(word);
 
             return resultStrings;
-        }
-
-        bool TitleAndMinorWordsAreTheSame(string title, string minorWords)
-        {
-            return (title == minorWords);
         }
     }
 }
