@@ -30,10 +30,10 @@ namespace KATAs
 
                 for (int i = 0; i < minorWordsList.Count; ++i)
                 {
-                    if (word == minorWordsList[i] && word != titleWords[0])
+                    if (word.ToLower() == minorWordsList[i].ToLower() && word != titleWords[0])
                     {
-                        result = AddWordToResultAsIs(result, word);
-                        
+                        result = AddWordToResultAsLowerCase(result, word);
+
                         skipTitleCasing = true;
                         break;
                     }
@@ -74,15 +74,15 @@ namespace KATAs
             }
             else
             {
-                result += character;
+                result += Char.ToLower(character);
             }
 
             return result;
         }
 
-        string AddWordToResultAsIs(string result, string word)
+        string AddWordToResultAsLowerCase(string result, string word)
         {
-            result += " " + word;
+            result += " " + word.ToLower();
 
             return result;
         }
