@@ -79,15 +79,16 @@ namespace KATAs.Test
             Assert.AreEqual("Wind in the Hills", titleCase.GetTitleCase("WIND IN THE HILLS", "The In"));
         }
 
-        /*
+        
         [TestMethod]
         public void Test009_GivenTitleCase_GetTitleCaseWorksEvenIfFirstLetterOfWordIsUsedLaterInWord()
         {
             TitleCase titleCase = new TitleCase();
 
-            Assert.AreEqual("The Wind in the Willows", titleCase.GetTitleCase("the wind in the willows", "the in"));
+            Assert.AreEqual("Wind in the Willows", titleCase.GetTitleCase("wind in the willows", "the in"));
         }
 
+        /*
         [TestMethod]
         public void Test010_GivenTitleCase_GetTitleCaseWorksEvenIfALaterWordIsTheSameAsTheFirstWord()
         {
