@@ -22,6 +22,7 @@ namespace KATAs
         {
             string result = "";
             bool skipTitleCasing = false;
+            int titleWordIndex = 0;
 
             List<string> titleWords = GetWordsFromString(title);
             foreach (string word in titleWords)
@@ -30,7 +31,7 @@ namespace KATAs
 
                 for (int i = 0; i < minorWordsList.Count; ++i)
                 {
-                    if (word.ToLower() == minorWordsList[i].ToLower() && word != titleWords[0])
+                    if (word.ToLower() == minorWordsList[i].ToLower() && titleWordIndex != 0)
                     {
                         result = AddWordToResultAsLowerCase(result, word);
 
@@ -57,6 +58,7 @@ namespace KATAs
                     }
                 }
 
+                titleWordIndex++;
                 skipTitleCasing = false;
             }
 
