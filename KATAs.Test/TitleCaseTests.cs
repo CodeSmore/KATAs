@@ -95,6 +95,14 @@ namespace KATAs.Test
             TitleCase titleCase = new TitleCase();
 
             Assert.AreEqual("The Wind in the Willows", titleCase.GetTitleCase("the wind in the willows", "the in"));
-        } 
+        }
+
+        [TestMethod]
+        public void Test011_GivenTitleCase_GetTitleCaseReturnsCapitalisedFirstWordEvenWhenInputAndMinorWordsAreTheSameAndLowerCase()
+        {
+            TitleCase titleCase = new TitleCase();
+
+            Assert.AreEqual("Ab", titleCase.GetTitleCase("ab", "ab"));
+        }
     }
 }
