@@ -54,5 +54,13 @@ namespace KATAs.Test
 
             Assert.AreEqual("Apple Pie", titleCase.GetTitleCase("apple pie"));
         }
+
+        [TestMethod]
+        public void Test006_GivenTitleCase_GetTitleCaseReturnsInputWithFirstAndFourthWordsTitleCasedSecondAndThirdWordsLowerCase()
+        {
+            TitleCase titleCase = new TitleCase();
+
+            Assert.AreEqual("Gone with the Wind", titleCase.GetTitleCase("gone with the wind", "the with"));
+        }
     }
 }

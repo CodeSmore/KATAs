@@ -19,31 +19,55 @@ namespace KATAs
         public string GetTitleCase(string title, string minorWords = "")
         {
             string result = "";
+            bool skipTitleCasing = false;
 
-            foreach (string word in GetWordsFromString(title))
+            List<string> titleWords = GetWordsFromString(title);
+            foreach (string word in titleWords)
             {
-                foreach (char character in word)
+                List<string> minorWordsList = GetWordsFromString(minorWords);
+
+                for (int i = 0; i < minorWordsList.Count; ++i)
                 {
-                    if (TitleAndMinorWordsAreTheSame(word, minorWords))
+                    if (word == minorWordsList[i])
                     {
-                        result = title;
-                    }
-                    else
-                    {
-                        if (character == word[0])
+                        if (word != titleWords[0])
                         {
-                            if (result != "")
-                            {
-                                result += " ";
-                            }
-                            result += Char.ToUpper(character);
+                            result += " ";
+                        }
+
+                        result += word;
+                        skipTitleCasing = true;
+                        break;
+                    }
+                }
+
+                if (!skipTitleCasing)
+                {
+                    foreach (char character in word)
+                    {
+                        if (TitleAndMinorWordsAreTheSame(word, minorWords))
+                        {
+                            result = title;
                         }
                         else
                         {
-                            result += character;
+                            if (character == word[0])
+                            {
+                                if (result != "")
+                                {
+                                    result += " ";
+                                }
+                                result += Char.ToUpper(character);
+                            }
+                            else
+                            {
+                                result += character;
+                            }
                         }
                     }
                 }
+
+                skipTitleCasing = false;
             }
 
             return result;
