@@ -62,5 +62,13 @@ namespace KATAs.Test
 
             Assert.AreEqual("Gone with the Wind", titleCase.GetTitleCase("gone with the wind", "the with"));
         }
+
+        [TestMethod]
+        public void Test007_GivenTitleCase_GetTitleCaseReturnsWithFirstWordCapitalizedEvenThoughItIsPresentInMinorWords()
+        {
+            TitleCase titleCase = new TitleCase();
+
+            Assert.AreEqual("A Clash of Jesters", titleCase.GetTitleCase("a clash of jesters", "of a"));
+        }
     }
 }
