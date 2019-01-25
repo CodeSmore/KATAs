@@ -30,12 +30,8 @@ namespace KATAs
                 {
                     if (word == minorWordsList[i])
                     {
-                        if (word != titleWords[0])
-                        {
-                            result += " ";
-                        }
-
-                        result += word;
+                        result = AddWordToResultAsIs(result, word, titleWords[0]);
+                        
                         skipTitleCasing = true;
                         break;
                     }
@@ -51,24 +47,45 @@ namespace KATAs
                         }
                         else
                         {
-                            if (character == word[0])
-                            {
-                                if (result != "")
-                                {
-                                    result += " ";
-                                }
-                                result += Char.ToUpper(character);
-                            }
-                            else
-                            {
-                                result += character;
-                            }
+                            result += AddWordOneCharacterAtATime(character, word[0], result);
                         }
                     }
                 }
 
                 skipTitleCasing = false;
             }
+
+            return result;
+        }
+
+        string AddWordOneCharacterAtATime(char character, char firstCharacterOfWord, string previousResult)
+        {
+            string result = "";
+
+            if (character == firstCharacterOfWord)
+            {
+                if (previousResult != "")
+                {
+                    result += " ";
+                }
+                result += Char.ToUpper(character);
+            }
+            else
+            {
+                result += character;
+            }
+
+            return result;
+        }
+
+        string AddWordToResultAsIs(string result, string word, string firstWordInTitle)
+        {
+            if (word != firstWordInTitle)
+            {
+                result += " ";
+            }
+
+            result += word;
 
             return result;
         }
