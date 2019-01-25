@@ -28,9 +28,9 @@ namespace KATAs
 
                 for (int i = 0; i < minorWordsList.Count; ++i)
                 {
-                    if (word == minorWordsList[i])
+                    if (word == minorWordsList[i] && word != titleWords[0])
                     {
-                        result = AddWordToResultAsIs(result, word, titleWords[0]);
+                        result = AddWordToResultAsIs(result, word);
                         
                         skipTitleCasing = true;
                         break;
@@ -78,14 +78,9 @@ namespace KATAs
             return result;
         }
 
-        string AddWordToResultAsIs(string result, string word, string firstWordInTitle)
+        string AddWordToResultAsIs(string result, string word)
         {
-            if (word != firstWordInTitle)
-            {
-                result += " ";
-            }
-
-            result += word;
+            result += " " + word;
 
             return result;
         }
