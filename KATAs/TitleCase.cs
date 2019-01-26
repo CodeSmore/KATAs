@@ -1,5 +1,6 @@
 ﻿/*
  KATA taken from https://www.codewars.com/kata/5202ef17a402dd033c000009/train/
+ For Best Practice Solutions: https://www.codewars.com/kata/5202ef17a402dd033c000009/solutions/csharp
 
  A string is considered to be in title case if each word in the string is either (a) capitalised 
  (that is, only the first letter of the word is in upper case) or (b) considered to be an exception 
@@ -24,10 +25,7 @@ namespace KATAs
             bool skipTitleCasing = false;
             int titleWordIndex = 0;
 
-            if (minorWords == null)
-            {
-                minorWords = "";
-            }
+            minorWords = HandleNullCaseForMinorWords(minorWords);
 
             List<string> titleWords = GetWordsFromString(title);
             foreach (string word in titleWords)
@@ -38,7 +36,7 @@ namespace KATAs
                 {
                     if (word.ToLower() == minorWordsList[i].ToLower() && titleWordIndex != 0)
                     {
-                        result = AddWordToResultAsLowerCase(result, word);
+                        result += ConvertToMinorWord(word);
 
                         skipTitleCasing = true;
                         break;
@@ -48,9 +46,10 @@ namespace KATAs
                 if (!skipTitleCasing)
                 {
                     int characterIndex = 0;
+
                     foreach (char character in word)
                     {
-                        result += AddWordOneCharacterAtATime(character, word[0], result, characterIndex);
+                        result += AddWordOneCharacterAtATime(character, result, characterIndex);
                         
                         characterIndex++;
                     }
@@ -63,11 +62,11 @@ namespace KATAs
             return result;
         }
 
-        string AddWordOneCharacterAtATime(char character, char firstCharacterOfWord, string previousResult, int characterIndex)
+        string AddWordOneCharacterAtATime(char character, string previousResult, int characterIndex)
         {
             string result = "";
 
-            if (character == firstCharacterOfWord && characterIndex == 0)
+            if (characterIndex == 0)
             {
                 if (previousResult != "")
                 {
@@ -83,11 +82,19 @@ namespace KATAs
             return result;
         }
 
-        string AddWordToResultAsLowerCase(string result, string word)
+        string ConvertToMinorWord(string word)
         {
-            result += " " + word.ToLower();
+            return " " + word.ToLower();
+        }
 
-            return result;
+        string HandleNullCaseForMinorWords(string minorWords)
+        {
+            if (minorWords == null)
+            {
+                minorWords = "";
+            }
+
+            return minorWords;
         }
 
         public List<string> GetWordsFromString(string stringOfWords)
