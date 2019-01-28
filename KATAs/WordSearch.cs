@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 
 namespace KATAs
@@ -8,7 +9,29 @@ namespace KATAs
     {
         public string GetInput(string fileName)
         {
-            string fileContentsAsString = "SEEK,TEST,WORD B,V,L,T,W X,V,S,O,O S,E,E,K,R T,P,W,X,D K,T,E,S,D";
+            // C:\Users\codes\source\repos\KATAs\KATAs.Data
+
+            string fileContentsAsString = "";
+
+            string workingDirectory = Directory.GetCurrentDirectory();
+            string projectDirectory = Directory.GetParent(workingDirectory).Parent.Parent.Parent.FullName;
+            string subfolderName = @"KATAs.Data\WordSearch";
+
+            string filePath = Path.Combine(projectDirectory, subfolderName, fileName);
+
+            using (StreamReader sr = new StreamReader(filePath))
+            {
+                while (!sr.EndOfStream)
+                {
+                    // Read in the line
+                    fileContentsAsString += sr.ReadLine();
+
+                    if (!sr.EndOfStream)
+                    {
+                        fileContentsAsString += " ";
+                    }
+                }
+            }
 
             return fileContentsAsString;
         }
