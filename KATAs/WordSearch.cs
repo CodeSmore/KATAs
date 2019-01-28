@@ -14,10 +14,10 @@ namespace KATAs
             string fileContentsAsString = "";
 
             string workingDirectory = Directory.GetCurrentDirectory();
-            string projectDirectory = Directory.GetParent(workingDirectory).Parent.Parent.Parent.FullName;
-            string subfolderName = @"KATAs.Data\WordSearch";
+            string solutionDirectory = Directory.GetParent(workingDirectory).Parent.Parent.Parent.FullName;
+            string subfolderPath = @"KATAs.Data\WordSearch";
 
-            string filePath = Path.Combine(projectDirectory, subfolderName, fileName);
+            string filePath = Path.Combine(solutionDirectory, subfolderPath, fileName);
 
             using (StreamReader sr = new StreamReader(filePath))
             {

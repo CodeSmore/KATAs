@@ -26,5 +26,15 @@ namespace KATAs.Test
             Assert.AreEqual("THIS,WAS,JUST,THE,TEST,FILE L,T,C,T,V,L,H D,D,S,L,S,Q,K F,U,T,E,S,T,O J,I,T,X,Y,S,C S,H,L,Y,W,I,N E,M,L,E,A,H,J Q,I,R,K,S,T,I"
                 , wordSearch.GetInput("TestDocument002.txt"));
         }
+
+        [TestMethod]
+        public void Test003_GivenWordSearch_GetForwardHorizontalWordsReturnsWordAndLocationOfLetters()
+        {
+            WordSearch wordSearch = new WordSearch();
+
+            string input = wordSearch.GetInput("TestDocument001.txt");
+
+            Assert.AreEqual("SEEK: (0,2),(1,2),(2,2),(3,2)", wordSearch.GetForwardHorizontalWords(input));
+        }
     }
 }
