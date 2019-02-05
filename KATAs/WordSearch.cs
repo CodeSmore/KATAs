@@ -40,10 +40,50 @@ namespace KATAs
         {
             string result = "";
             List<string> wordsInSearch = GetWordsInSearch(input);
+            List<string> linesInSearch = GetLinesInSearch(input);
+            
 
+            // search each line
 
 
             return result;
+        }
+
+        public List<string> GetLinesInSearch(string input)
+        {
+            List<string> linesInSearch = new List<string>();
+
+            string line = "";
+            bool startAddingLines = false;
+            foreach (char character in input)
+            {
+                if (!startAddingLines)
+                {
+                    if (character == ' ')
+                    {
+                        startAddingLines = true;
+                    }
+                }
+                else
+                {
+                    if (character == ' ')
+                    {
+                        linesInSearch.Add(line);
+                        line = "";
+                    }
+                    else if (character != ',')
+                    {
+                        line += character;
+                    }
+                }
+            }
+
+            if (line != "")
+            {
+                linesInSearch.Add(line);
+            }
+
+            return linesInSearch;
         }
 
         public List<string> GetWordsInSearch(string input)

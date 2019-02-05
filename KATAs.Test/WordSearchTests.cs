@@ -39,7 +39,7 @@ namespace KATAs.Test
         }
 
         [TestMethod]
-        public void Test004_GivenWordSearch_GetWordsInSearchReturnsAListOfStringsContainingEachWordInTheWordSearch()
+        public void Test003_HelperMethod001_GivenWordSearch_GetWordsInSearchReturnsAListOfStringsContainingEachWordInTheWordSearch()
         {
             WordSearch wordSearch = new WordSearch();
 
@@ -56,6 +56,28 @@ namespace KATAs.Test
 
             expectedResult = new List<string>(new string[] { "THIS", "WAS", "JUST", "THE", "TEST", "FILE" });
             actualResult = wordSearch.GetWordsInSearch(input);
+
+            CollectionAssert.AreEqual(expectedResult, actualResult);
+        }
+
+        [TestMethod]
+        public void Test003_HelperMethod002_GivenWordSearch_GetLinesInSearchReturnsAListOfStringsEachContainingALineFromThePuzzle()
+        {
+            WordSearch wordSearch = new WordSearch();
+
+            string input = wordSearch.GetInput("TestDocument001.txt");
+
+            List<string> expectedResult = new List<string>(new string[] { "BVLTW", "XVSOO", "SEEKR", "TPWXD", "KTESD" });
+            List<string> actualResult = wordSearch.GetLinesInSearch(input);
+
+            CollectionAssert.AreEqual(expectedResult, actualResult);
+
+            // ---------------------------------------------------------------------------------------------------------------
+
+            input = wordSearch.GetInput("TestDocument002.txt");
+
+            expectedResult = new List<string>(new string[] { "LTCTVLH", "DDSLSQK", "FUTESTO", "JITXYSC", "SHLYWIN", "EMLEAHJ", "QIRKSTI" });
+            actualResult = wordSearch.GetLinesInSearch(input);
 
             CollectionAssert.AreEqual(expectedResult, actualResult);
         }
