@@ -41,10 +41,38 @@ namespace KATAs
             string result = "";
             List<string> wordsInSearch = GetWordsInSearch(input);
             List<string> linesInSearch = GetLinesInSearch(input);
-            
+
 
             // search each line
+            for (int i = 0; i < linesInSearch.Count; ++i)
+            {
+                for (int j = 0; j < wordsInSearch.Count; ++j)
+                {
+                    if (linesInSearch[i].Contains(wordsInSearch[j]))
+                    {
+                        result += wordsInSearch[j] + ": ";
 
+                        // find positions
+                        for (int k = 0; k < linesInSearch[i].Length; ++k)
+                        {
+                            if (linesInSearch[i].Substring(k).Length >= wordsInSearch[j].Length)
+                            {
+                                if (linesInSearch[i].Substring(k, wordsInSearch[j].Length) == wordsInSearch[j])
+                                {
+                                    for (int l = 0; l < wordsInSearch[j].Length; ++l)
+                                    {
+                                        if (l > 0)
+                                        {
+                                            result += ",";
+                                        }
+                                        result += "(" + l + "," + i + ")";
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
 
             return result;
         }
