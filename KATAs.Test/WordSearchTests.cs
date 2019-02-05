@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -43,9 +44,20 @@ namespace KATAs.Test
             WordSearch wordSearch = new WordSearch();
 
             string input = wordSearch.GetInput("TestDocument001.txt");
-            List<string> expectedResult = new List<string>(new string[] { "SEEK", "TEST", "WORD" });
 
-            Assert.AreEqual(expectedResult, wordSearch.GetWordsInSearch(input));
+            List<string> expectedResult = new List<string>(new string[] { "SEEK", "TEST", "WORD" });
+            List<string> actualResult = wordSearch.GetWordsInSearch(input);
+
+            CollectionAssert.AreEqual(expectedResult, actualResult);
+
+// ---------------------------------------------------------------------------------------------------------------
+
+            input = wordSearch.GetInput("TestDocument002.txt");
+
+            expectedResult = new List<string>(new string[] { "THIS", "WAS", "JUST", "THE", "TEST", "FILE" });
+            actualResult = wordSearch.GetWordsInSearch(input);
+
+            CollectionAssert.AreEqual(expectedResult, actualResult);
         }
     }
 }

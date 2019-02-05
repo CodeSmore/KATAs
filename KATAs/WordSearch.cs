@@ -53,13 +53,20 @@ namespace KATAs
 
             foreach (char character in input)
             {
-                if (character != ' ' && character != ',')
+                if (character == ' ')
+                {
+                    result.Add(word);
+                    break;
+                }
+
+                if (character != ',' && character != ' ')
                 {
                     word += character;
                 }
                 else
                 {
                     result.Add(word);
+                    word = "";
                 }
             }
 
