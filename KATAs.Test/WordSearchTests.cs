@@ -36,5 +36,16 @@ namespace KATAs.Test
 
             Assert.AreEqual("SEEK: (0,2),(1,2),(2,2),(3,2)", wordSearch.GetForwardHorizontalWords(input));
         }
+
+        [TestMethod]
+        public void Test004_GivenWordSearch_GetWordsInSearchReturnsAListOfStringsContainingEachWordInTheWordSearch()
+        {
+            WordSearch wordSearch = new WordSearch();
+
+            string input = wordSearch.GetInput("TestDocument001.txt");
+            List<string> expectedResult = new List<string>(new string[] { "SEEK", "TEST", "WORD" });
+
+            Assert.AreEqual(expectedResult, wordSearch.GetWordsInSearch(input));
+        }
     }
 }

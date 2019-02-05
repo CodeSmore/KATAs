@@ -35,5 +35,35 @@ namespace KATAs
 
             return fileContentsAsString;
         }
+
+        public string GetForwardHorizontalWords(string input)
+        {
+            string result = "";
+            List<string> wordsInSearch = GetWordsInSearch(input);
+
+
+
+            return result;
+        }
+
+        public List<string> GetWordsInSearch(string input)
+        {
+            List<string> result = new List<string>();
+            string word = "";
+
+            foreach (char character in input)
+            {
+                if (character != ' ' && character != ',')
+                {
+                    word += character;
+                }
+                else
+                {
+                    result.Add(word);
+                }
+            }
+
+            return result;
+        }
     }
 }
