@@ -81,5 +81,15 @@ namespace KATAs.Test
 
             CollectionAssert.AreEqual(expectedResult, actualResult);
         }
+
+        [TestMethod]
+        public void Test004_GivenWordSearch_GetBackwardsHorizontalWordsReturnsWordAndLocationOfLetters()
+        {
+            WordSearch wordSearch = new WordSearch();
+
+            string input = wordSearch.GetInput("TestDocument003_InverseOf001.txt");
+
+            Assert.AreEqual("SEEK: (4,2),(3,2),(2,2),(1,2)", wordSearch.GetBackwardsHorizontalWords(input));
+        }
     }
 }
