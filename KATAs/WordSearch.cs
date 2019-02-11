@@ -59,9 +59,9 @@ namespace KATAs
                             {
                                 if (linesInSearch[i].Substring(k, wordsInSearch[j].Length) == wordsInSearch[j])
                                 {
-                                    for (int l = 0; l < wordsInSearch[j].Length; ++l)
+                                    for (int l = k; l < wordsInSearch[j].Length + k; ++l)
                                     {
-                                        if (l > 0)
+                                        if (l > k)
                                         {
                                             result += ",";
                                         }
@@ -102,9 +102,10 @@ namespace KATAs
                             {
                                 if (linesInSearch[i].Substring(k, wordsInSearch[j].Length) == ReverseString(wordsInSearch[j]))
                                 {
-                                    for (int l = wordsInSearch[j].Length; l > 0;  --l)
+                                    int xPositionOfFirstLetter = wordsInSearch[j].Length + k - 1;
+                                    for (int l = xPositionOfFirstLetter; l > xPositionOfFirstLetter - wordsInSearch[j].Length;  --l)
                                     {
-                                        if (l < wordsInSearch[j].Length)
+                                        if (l < wordsInSearch[j].Length + k - 1)
                                         {
                                             result += ",";
                                         }

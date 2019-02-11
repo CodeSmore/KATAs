@@ -36,6 +36,12 @@ namespace KATAs.Test
             string input = wordSearch.GetInput("TestDocument001.txt");
 
             Assert.AreEqual("SEEK: (0,2),(1,2),(2,2),(3,2)", wordSearch.GetForwardHorizontalWords(input));
+
+            // -------------------------------------------------------------------------------
+
+            input = wordSearch.GetInput("TestDocument002.txt");
+
+            Assert.AreEqual("TEST: (2,2),(3,2),(4,2),(5,2)", wordSearch.GetForwardHorizontalWords(input));
         }
 
         [TestMethod]
@@ -90,6 +96,16 @@ namespace KATAs.Test
             string input = wordSearch.GetInput("TestDocument003_InverseOf001.txt");
 
             Assert.AreEqual("SEEK: (4,2),(3,2),(2,2),(1,2)", wordSearch.GetBackwardsHorizontalWords(input));
+
+            //----------------------------------------------------------------------------------------------
+
+            input = wordSearch.GetInput("TestDocument004_InverseOf002.txt");
+
+            Assert.AreEqual("TEST: (4,4),(3,4),(2,4),(1,4)", wordSearch.GetBackwardsHorizontalWords(input));
+
+            input = wordSearch.GetInput("TestDocument005.txt");
+
+            Assert.AreEqual("TEST: (5,4),(4,4),(3,4),(2,4)", wordSearch.GetBackwardsHorizontalWords(input));
         }
     }
 }
