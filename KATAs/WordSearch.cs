@@ -77,6 +77,49 @@ namespace KATAs
             return result;
         }
 
+        public string GetBackwardsHorizontalWords(string input)
+        {
+            string result = "";
+            List<string> wordsInSearch = GetWordsInSearch(input);
+            List<string> linesInSearch = GetLinesInSearch(input);
+
+
+            // search each line
+            for (int i = 0; i < linesInSearch.Count; ++i)
+            {
+                // using each word that we're looking for
+                for (int j = 0; j < wordsInSearch.Count; ++j)
+                {
+
+                    if (linesInSearch[i].Contains(ReverseString(wordsInSearch[j])))
+                    {
+                        result += wordsInSearch[j] + ": ";
+
+                        // find positions of letters
+                        for (int k = 0; k < linesInSearch[i].Length; ++k)
+                        {
+                            if (linesInSearch[i].Substring(k).Length >= wordsInSearch[j].Length)
+                            {
+                                if (linesInSearch[i].Substring(k, wordsInSearch[j].Length) == ReverseString(wordsInSearch[j]))
+                                {
+                                    for (int l = wordsInSearch[j].Length; l > 0;  --l)
+                                    {
+                                        if (l < wordsInSearch[j].Length)
+                                        {
+                                            result += ",";
+                                        }
+                                        result += "(" + l + "," + i + ")";
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            return result;
+        }
+
         public List<string> GetLinesInSearch(string input)
         {
             List<string> linesInSearch = new List<string>();
@@ -139,6 +182,15 @@ namespace KATAs
             }
 
             return result;
+        }
+
+        // taken from
+        // https://www.dotnetperls.com/reverse-string
+        public static string ReverseString(string s)
+        {
+            char[] arr = s.ToCharArray();
+            Array.Reverse(arr);
+            return new string(arr);
         }
     }
 }
