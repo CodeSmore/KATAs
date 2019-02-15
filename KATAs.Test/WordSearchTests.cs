@@ -117,5 +117,19 @@ namespace KATAs.Test
 
             Assert.AreEqual("WORD: (0,4),(1,4),(2,4),(3,4)", wordSearch.GetDownwardsVerticalWords(input));
         }
+
+        [TestMethod]
+        public void Test005_HelperMethod001_GivenWordSearch_FillWordSearchArrayContainsTheCorrectValues()
+        {
+            WordSearch wordSearch = new WordSearch();
+
+            string input = wordSearch.GetInput("TestDocument001.txt");
+            List<string> linesInSearch = wordSearch.GetLinesInWordSearch(input);
+
+            string[,] expectedResult = new string[,] { { "B", "V", "L", "T", "W" }, { "X", "V", "S", "O", "O"}, { "S", "E", "E", "K", "R"}, { "T", "P", "W", "X", "D"}, { "K", "T", "E", "S", "D"} };
+            string[,] actualResult = wordSearch.FillWordSearchArray(linesInSearch);
+
+            CollectionAssert.AreEqual(expectedResult, actualResult);
+        }
     }
 }

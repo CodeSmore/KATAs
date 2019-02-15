@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using System.Linq;
+using System.Runtime.InteropServices;
 
 namespace KATAs
 {
@@ -115,6 +117,98 @@ namespace KATAs
                             }
                         }
                     }
+                }
+            }
+
+            return result;
+        }
+
+        public string GetDownwardsVerticalWords(string input)
+        {
+            string result = "";
+            List<string> wordSearchKeywords = GetWordSearchKeywords(input);
+            List<string> linesInWordSearch = GetLinesInWordSearch(input);
+
+            string[,] wordSearchArray = new string[linesInWordSearch[0].Length, linesInWordSearch.Count];
+
+            wordSearchArray = FillWordSearchArray(linesInWordSearch);
+
+            // search each line
+            for (int i = 0; i < wordSearchArray.GetLength(0); ++i)
+            {
+                // using each word that we're looking for
+                for (int j = 0; j < wordSearchKeywords.Count; ++j)
+                {
+                    string column = "";
+
+                    for (int k = 0; k < wordSearchArray.GetLength(0); ++k)
+                    {
+                        column += wordSearchArray[k, i];
+                    }
+
+                    if (column.Contains(wordSearchKeywords[j]))
+                    {
+                        result += wordSearchKeywords[j] + ": ";
+
+                        // find positions of letters
+                        for (int k = 0; k < column.Length; ++k)
+                        {
+                            if (column.Substring(k).Length >= wordSearchKeywords[j].Length)
+                            {
+                                if (column.Substring(k, wordSearchKeywords[j].Length) == (wordSearchKeywords[j]))
+                                {
+                                    int xPositionOfFirstLetter = wordSearchKeywords[j].Length + k - 1;
+                                    for (int l = k; l < wordSearchKeywords[j].Length + k; ++l)
+                                    {
+                                        if (l > k)
+                                        {
+                                            result += ",";
+                                        }
+                                        result += "(" + l + "," + i + ")";
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    //if (linesInWordSearch[i].Contains(wordSearchKeywords[j]))
+                    //{
+                    //    result += wordSearchKeywords[j] + ": ";
+
+                    //    // find positions of letters
+                    //    for (int k = 0; k < linesInWordSearch[i].Length; ++k)
+                    //    {
+                    //        if (linesInWordSearch[i].Substring(k).Length >= wordSearchKeywords[j].Length)
+                    //        {
+                    //            if (linesInWordSearch[i].Substring(k, wordSearchKeywords[j].Length) == ReverseString(wordSearchKeywords[j]))
+                    //            {
+                    //                int xPositionOfFirstLetter = wordSearchKeywords[j].Length + k - 1;
+                    //                for (int l = xPositionOfFirstLetter; l > xPositionOfFirstLetter - wordSearchKeywords[j].Length; --l)
+                    //                {
+                    //                    if (l < wordSearchKeywords[j].Length + k - 1)
+                    //                    {
+                    //                        result += ",";
+                    //                    }
+                    //                    result += "(" + l + "," + i + ")";
+                    //                }
+                    //            }
+                    //        }
+                    //    }
+                    //}
+                }
+            }
+
+            return result;
+        }
+
+        public string[,] FillWordSearchArray(List<string> linesInWordSearch)
+        {
+            string[,] result = new string[linesInWordSearch[0].Length, linesInWordSearch.Count];
+
+            for (int i = 0; i < linesInWordSearch[0].Length; ++i)
+            {
+                for (int j = 0; j < linesInWordSearch.Count; ++j)
+                {
+                    result[i, j] = linesInWordSearch[i].Substring(j, 1);
                 }
             }
 
