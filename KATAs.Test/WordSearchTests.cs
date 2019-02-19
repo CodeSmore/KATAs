@@ -35,13 +35,13 @@ namespace KATAs.Test
 
             string input = wordSearch.GetInput("TestDocument001.txt");
 
-            Assert.AreEqual("SEEK: (0,2),(1,2),(2,2),(3,2)", wordSearch.GetForwardHorizontalWords(input));
+            Assert.AreEqual("SEEK: (0,2),(1,2),(2,2),(3,2)", wordSearch.GetHorizontalWords(input));
 
             // -------------------------------------------------------------------------------
 
             input = wordSearch.GetInput("TestDocument002.txt");
 
-            Assert.AreEqual("TEST: (2,2),(3,2),(4,2),(5,2)", wordSearch.GetForwardHorizontalWords(input));
+            Assert.AreEqual("TEST: (2,2),(3,2),(4,2),(5,2)", wordSearch.GetHorizontalWords(input));
         }
 
         [TestMethod]
@@ -74,7 +74,7 @@ namespace KATAs.Test
             string input = wordSearch.GetInput("TestDocument001.txt");
 
             List<string> expectedResult = new List<string>(new string[] { "BVLTW", "XVSOO", "SEEKR", "TPWXD", "KTESD" });
-            List<string> actualResult = wordSearch.GetLinesInWordSearch(input);
+            List<string> actualResult = wordSearch.GetRowsInWordSearch(input);
 
             CollectionAssert.AreEqual(expectedResult, actualResult);
 
@@ -83,7 +83,7 @@ namespace KATAs.Test
             input = wordSearch.GetInput("TestDocument002.txt");
 
             expectedResult = new List<string>(new string[] { "LTCTVLH", "DDSLSQK", "FUTESTO", "JITXYSC", "SHLYWIN", "EMLEAHJ", "QIRKSTI" });
-            actualResult = wordSearch.GetLinesInWordSearch(input);
+            actualResult = wordSearch.GetRowsInWordSearch(input);
 
             CollectionAssert.AreEqual(expectedResult, actualResult);
         }
@@ -95,17 +95,17 @@ namespace KATAs.Test
 
             string input = wordSearch.GetInput("TestDocument003_InverseOf001.txt");
 
-            Assert.AreEqual("SEEK: (4,2),(3,2),(2,2),(1,2)", wordSearch.GetBackwardsHorizontalWords(input));
+            Assert.AreEqual("SEEK: (4,2),(3,2),(2,2),(1,2)", wordSearch.GetHorizontalWords(input));
 
             //----------------------------------------------------------------------------------------------
 
             input = wordSearch.GetInput("TestDocument004_InverseOf002.txt");
 
-            Assert.AreEqual("TEST: (4,4),(3,4),(2,4),(1,4)", wordSearch.GetBackwardsHorizontalWords(input));
+            Assert.AreEqual("TEST: (4,4),(3,4),(2,4),(1,4)", wordSearch.GetHorizontalWords(input));
 
             input = wordSearch.GetInput("TestDocument005.txt");
 
-            Assert.AreEqual("TEST: (5,4),(4,4),(3,4),(2,4)", wordSearch.GetBackwardsHorizontalWords(input));
+            Assert.AreEqual("TEST: (5,4),(4,4),(3,4),(2,4)", wordSearch.GetHorizontalWords(input));
         }
 
         [TestMethod]
@@ -118,18 +118,28 @@ namespace KATAs.Test
             Assert.AreEqual("WORD: (0,4),(1,4),(2,4),(3,4)", wordSearch.GetDownwardsVerticalWords(input));
         }
 
+        //[TestMethod]
+        //public void Test005_HelperMethod001_GivenWordSearch_FillWordSearchArrayContainsTheCorrectValues()
+        //{
+        //    WordSearch wordSearch = new WordSearch();
+
+        //    string input = wordSearch.GetInput("TestDocument001.txt");
+        //    List<string> linesInSearch = wordSearch.GetRowsInWordSearch(input);
+
+        //    string[,] expectedResult = new string[,] { { "B", "V", "L", "T", "W" }, { "X", "V", "S", "O", "O"}, { "S", "E", "E", "K", "R"}, { "T", "P", "W", "X", "D"}, { "K", "T", "E", "S", "D"} };
+        //    string[,] actualResult = wordSearch.FillWordSearchArray(linesInSearch);
+
+        //    CollectionAssert.AreEqual(expectedResult, actualResult);
+        //}
+
         [TestMethod]
-        public void Test005_HelperMethod001_GivenWordSearch_FillWordSearchArrayContainsTheCorrectValues()
+        public void Test006_GivenWordSearch_GetUpwardsVerticalWordsReturnsWordAndLocationOfLetters()
         {
             WordSearch wordSearch = new WordSearch();
 
-            string input = wordSearch.GetInput("TestDocument001.txt");
-            List<string> linesInSearch = wordSearch.GetLinesInWordSearch(input);
+            string input = wordSearch.GetInput("TestDocument002.txt");
 
-            string[,] expectedResult = new string[,] { { "B", "V", "L", "T", "W" }, { "X", "V", "S", "O", "O"}, { "S", "E", "E", "K", "R"}, { "T", "P", "W", "X", "D"}, { "K", "T", "E", "S", "D"} };
-            string[,] actualResult = wordSearch.FillWordSearchArray(linesInSearch);
-
-            CollectionAssert.AreEqual(expectedResult, actualResult);
+            Assert.AreEqual("THIS: (6,5),(5,5),(4,5),(3,5)", wordSearch.GetUpwardsVerticalWords(input));
         }
     }
 }
