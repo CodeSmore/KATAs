@@ -156,7 +156,5 @@ namespace KATAs.Test
 
             CollectionAssert.AreEqual(expectedResult, actualResult);
         }
-
-
     }
 }

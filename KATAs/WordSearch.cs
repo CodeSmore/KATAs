@@ -118,9 +118,8 @@ namespace KATAs
                     }
                     else if (diagonal.Contains(ReverseString(keywords[j])))
                     {
-                        /*
                         result += newLineIfStringIsNotEmpty(result);
-                        result += keywords[j] + ": " /*+ GetKeywordDownwardsDiagonalLetterPositions(i, keywords[j], upwardDiagonalsInWordSearch[i])*/;
+                        result += keywords[j] + ": " + GetKeywordBackwardsUpwardDiagonalLetterPositions(i, keywords[j], upwardDiagonalsInWordSearch[i]);
                         
                     }
                 }
@@ -250,6 +249,34 @@ namespace KATAs
                                 result += ",";
                             }
                             result += "(" + l + "," + rowIndex-- + ")";
+                        }
+                    }
+                }
+            }
+            return result;
+        }
+
+        string GetKeywordBackwardsUpwardDiagonalLetterPositions(int rowIndex, string keyword, string diagonalString)
+        {
+            string result = "";
+
+            // find positions of letters
+            for (int k = 0; k < diagonalString.Length; ++k)
+            {
+                if (diagonalString.Substring(k).Length >= keyword.Length)
+                {
+                    if (diagonalString.Substring(k, keyword.Length) == ReverseString(keyword))
+                    {
+                        int xPositionOfFirstLetter = keyword.Length + k - 1;
+                        int yPositionOfLetter = rowIndex - (keyword.Length - 1);
+
+                        for (int l = xPositionOfFirstLetter; l > xPositionOfFirstLetter - keyword.Length; --l)
+                        {
+                            if (l < keyword.Length + k - 1)
+                            {
+                                result += ",";
+                            }
+                            result += "(" + l + "," + yPositionOfLetter++ + ")";
                         }
                     }
                 }
