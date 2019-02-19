@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Text;
-using System.Linq;
-using System.Runtime.InteropServices;
 
 namespace KATAs
 {
@@ -98,7 +95,7 @@ namespace KATAs
             return result;
         }
 
-        public string GetKeywordDownwardsVerticalLetterPositions(int columnIndex, string keyword, string rowString)
+        string GetKeywordDownwardsVerticalLetterPositions(int columnIndex, string keyword, string rowString)
         {
             string result = "";
 
@@ -147,24 +144,6 @@ namespace KATAs
                     }
                 }
             }
-            return result;
-        }
-
-        public List<string> GetColumnsInWordSearch (List<string> rowsInWordSearch)
-        {
-            List<string> result = new List<string>(rowsInWordSearch[0].Length);
-            string column = "";
-
-            for (int i = 0; i < rowsInWordSearch[0].Length; ++i)
-            {
-                for (int j = 0; j < rowsInWordSearch.Count; ++j)
-                {
-                    column += rowsInWordSearch[j].Substring(i, 1);
-                }
-                result.Add(column);
-                column = "";
-            }
-
             return result;
         }
 
@@ -257,6 +236,24 @@ namespace KATAs
             return rowsInSearch;
         }
 
+        public List<string> GetColumnsInWordSearch(List<string> rowsInWordSearch)
+        {
+            List<string> result = new List<string>(rowsInWordSearch[0].Length);
+            string column = "";
+
+            for (int i = 0; i < rowsInWordSearch[0].Length; ++i)
+            {
+                for (int j = 0; j < rowsInWordSearch.Count; ++j)
+                {
+                    column += rowsInWordSearch[j].Substring(i, 1);
+                }
+                result.Add(column);
+                column = "";
+            }
+
+            return result;
+        }
+
         public List<string> GetWordSearchKeywords(string input)
         {
             List<string> result = new List<string>();
@@ -293,6 +290,7 @@ namespace KATAs
 
             return "";
         }
+
 
         // taken from
         // https://www.dotnetperls.com/reverse-string
