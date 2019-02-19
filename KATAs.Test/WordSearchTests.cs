@@ -141,7 +141,7 @@ namespace KATAs.Test
 
             input = wordSearch.GetInput("TestDocument002.txt");
 
-            Assert.AreEqual("JUST: (0,3),(1,2),(2,1),(3,0)", wordSearch.GetUpwardsDiagonalWords(input));
+            Assert.AreEqual("JUST: (0,3),(1,2),(2,1),(3,0)\nTHE: (2,3),(1,4),(0,5)", wordSearch.GetUpwardsDiagonalWords(input));
         }
 
         [TestMethod]
@@ -156,5 +156,7 @@ namespace KATAs.Test
 
             CollectionAssert.AreEqual(expectedResult, actualResult);
         }
+
+
     }
 }
