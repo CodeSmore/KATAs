@@ -109,34 +109,36 @@ namespace KATAs
                 // j is an interation for each keyword that can be found in the word search
                 for (int j = 0; j < keywords.Count; ++j)
                 {
-                    string column = upwardDiagonalsInWordSearch[i];
+                    string diagonal = upwardDiagonalsInWordSearch[i];
 
-                    if (column.Contains(keywords[j]))
+                    if (diagonal.Contains(keywords[j]))
                     {
                         result += newLineIfStringIsNotEmpty(result);
-                        result += keywords[j] + ": " + GetKeywordDownwardsVerticalLetterPositions(i, keywords[j], upwardDiagonalsInWordSearch[i]);
+                        result += keywords[j] + ": " + GetKeywordUpwardDiagonalLetterPositions(i, keywords[j], upwardDiagonalsInWordSearch[i]);
                     }
-                    else if (column.Contains(ReverseString(keywords[j])))
+                    else if (diagonal.Contains(ReverseString(keywords[j])))
                     {
+                        /*
                         result += newLineIfStringIsNotEmpty(result);
-                        result += keywords[j] + ": " + GetKeywordUpwardsVerticalLetterPositions(i, keywords[j], upwardDiagonalsInWordSearch[i]);
+                        result += keywords[j] + ": " /*+ GetKeywordDownwardsDiagonalLetterPositions(i, keywords[j], upwardDiagonalsInWordSearch[i])*/;
+                        
                     }
                 }
             }
             return result;
         }
 
-        string GetKeywordDownwardsVerticalLetterPositions(int columnIndex, string keyword, string rowString)
+        string GetKeywordDownwardsVerticalLetterPositions(int columnIndex, string keyword, string columnString)
         {
             string result = "";
 
             // find positions
             // k represents which column position we are looking at in the specified row
-            for (int k = 0; k < rowString.Length; ++k)
+            for (int k = 0; k < columnString.Length; ++k)
             {
-                if (rowString.Substring(k).Length >= keyword.Length)
+                if (columnString.Substring(k).Length >= keyword.Length)
                 {
-                    if (rowString.Substring(k, keyword.Length) == keyword)
+                    if (columnString.Substring(k, keyword.Length) == keyword)
                     {
                         for (int l = k; l < keyword.Length + k; ++l)
                         {
@@ -152,16 +154,16 @@ namespace KATAs
             return result;
         }
 
-        string GetKeywordUpwardsVerticalLetterPositions(int columnIndex, string keyword, string rowString)
+        string GetKeywordUpwardsVerticalLetterPositions(int columnIndex, string keyword, string columnString)
         {
             string result = "";
 
             // find positions of letters
-            for (int k = 0; k < rowString.Length; ++k)
+            for (int k = 0; k < columnString.Length; ++k)
             {
-                if (rowString.Substring(k).Length >= keyword.Length)
+                if (columnString.Substring(k).Length >= keyword.Length)
                 {
-                    if (rowString.Substring(k, keyword.Length) == ReverseString(keyword))
+                    if (columnString.Substring(k, keyword.Length) == ReverseString(keyword))
                     {
                         int xPositionOfFirstLetter = keyword.Length + k - 1;
                         for (int l = xPositionOfFirstLetter; l > xPositionOfFirstLetter - keyword.Length; --l)
@@ -223,6 +225,31 @@ namespace KATAs
                                 result += ",";
                             }
                             result += "(" + l + "," + rowIndex + ")";
+                        }
+                    }
+                }
+            }
+            return result;
+        }
+
+        string GetKeywordUpwardDiagonalLetterPositions(int rowIndex, string keyword, string diagonalString)
+        {
+            string result = "";
+
+            // find positions of letters
+            for (int k = 0; k < diagonalString.Length; ++k)
+            {
+                if (diagonalString.Substring(k).Length >= keyword.Length)
+                {
+                    if (diagonalString.Substring(k, keyword.Length) == keyword)
+                    {
+                        for (int l = k; l < keyword.Length; ++l)
+                        {
+                            if (l > k)
+                            {
+                                result += ",";
+                            }
+                            result += "(" + l + "," + rowIndex-- + ")";
                         }
                     }
                 }
