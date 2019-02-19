@@ -29,7 +29,7 @@ namespace KATAs.Test
         }
 
         [TestMethod]
-        public void Test003_GivenWordSearch_GetForwardHorizontalWordsReturnsWordAndLocationOfLetters()
+        public void Test003_GivenWordSearch_GetHorizontalWordsReturnsWordAndLocationOfLettersForForwardHorizontalWords()
         {
             WordSearch wordSearch = new WordSearch();
 
@@ -45,7 +45,7 @@ namespace KATAs.Test
         }
 
         [TestMethod]
-        public void Test003_HelperMethod001_GivenWordSearch_GetWordsInSearchReturnsAListOfStringsContainingEachWordInTheWordSearch()
+        public void Test003_HelperMethod001_GivenWordSearch_GetWordSearchKeywordsReturnsAListOfStringsContainingEachWordInTheWordSearch()
         {
             WordSearch wordSearch = new WordSearch();
 
@@ -67,7 +67,7 @@ namespace KATAs.Test
         }
 
         [TestMethod]
-        public void Test003_HelperMethod002_GivenWordSearch_GetLinesInSearchReturnsAListOfStringsEachContainingALineFromThePuzzle()
+        public void Test003_HelperMethod002_GivenWordSearch_GetRowsInWordSearchReturnsAListOfStringsEachContainingARowFromThePuzzle()
         {
             WordSearch wordSearch = new WordSearch();
 
@@ -89,7 +89,7 @@ namespace KATAs.Test
         }
 
         [TestMethod]
-        public void Test004_GivenWordSearch_GetBackwardsHorizontalWordsReturnsWordAndLocationOfLetters()
+        public void Test004_GivenWordSearch_GetHorizontalWordsReturnsWordAndLocationOfLettersForBackwardsHorizontalWords()
         {
             WordSearch wordSearch = new WordSearch();
 
@@ -109,7 +109,7 @@ namespace KATAs.Test
         }
 
         [TestMethod]
-        public void Test005_GivenWordSearch_GetDownwardsVerticalWordsReturnsWordAndLocationOfLetters()
+        public void Test005_GivenWordSearch_GetVerticalWordsReturnsWordAndLocationOfLettersForDownwardsVerticalWords()
         {
             WordSearch wordSearch = new WordSearch();
 
@@ -118,22 +118,8 @@ namespace KATAs.Test
             Assert.AreEqual("WORD: (0,4),(1,4),(2,4),(3,4)", wordSearch.GetVerticalWords(input));
         }
 
-        //[TestMethod]
-        //public void Test005_HelperMethod001_GivenWordSearch_FillWordSearchArrayContainsTheCorrectValues()
-        //{
-        //    WordSearch wordSearch = new WordSearch();
-
-        //    string input = wordSearch.GetInput("TestDocument001.txt");
-        //    List<string> linesInSearch = wordSearch.GetRowsInWordSearch(input);
-
-        //    string[,] expectedResult = new string[,] { { "B", "V", "L", "T", "W" }, { "X", "V", "S", "O", "O"}, { "S", "E", "E", "K", "R"}, { "T", "P", "W", "X", "D"}, { "K", "T", "E", "S", "D"} };
-        //    string[,] actualResult = wordSearch.FillWordSearchArray(linesInSearch);
-
-        //    CollectionAssert.AreEqual(expectedResult, actualResult);
-        //}
-
         [TestMethod]
-        public void Test006_GivenWordSearch_GetUpwardsVerticalWordsReturnsWordAndLocationOfLetters()
+        public void Test006_GivenWordSearch_GetVerticalWordsReturnsWordAndLocationOfLettersForUpwardsAndDownwardsVerticalWords()
         {
             WordSearch wordSearch = new WordSearch();
 
