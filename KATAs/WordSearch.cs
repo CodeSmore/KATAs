@@ -98,7 +98,7 @@ namespace KATAs
             return result;
         }
 
-        public string GetKeywordDownwardsVerticalLetterPositions(int rowIndex, string keyword, string rowString)
+        public string GetKeywordDownwardsVerticalLetterPositions(int columnIndex, string keyword, string rowString)
         {
             string result = "";
 
@@ -116,7 +116,7 @@ namespace KATAs
                             {
                                 result += ",";
                             }
-                            result += "(" + l + "," + rowIndex + ")";
+                            result += "(" + columnIndex + "," + l + ")";
                         }
                     }
                 }
@@ -124,7 +124,7 @@ namespace KATAs
             return result;
         }
 
-        string GetKeywordUpwardsVerticalLetterPositions(int rowIndex, string keyword, string rowString)
+        string GetKeywordUpwardsVerticalLetterPositions(int columnIndex, string keyword, string rowString)
         {
             string result = "";
 
@@ -142,7 +142,7 @@ namespace KATAs
                             {
                                 result += ",";
                             }
-                            result += "(" + l + "," + rowIndex + ")";
+                            result += "(" + columnIndex + "," + l + ")";
                         }
                     }
                 }

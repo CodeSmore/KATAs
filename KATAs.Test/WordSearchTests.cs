@@ -115,7 +115,7 @@ namespace KATAs.Test
 
             string input = wordSearch.GetInput("TestDocument001.txt");
 
-            Assert.AreEqual("WORD: (0,4),(1,4),(2,4),(3,4)", wordSearch.GetVerticalWords(input));
+            Assert.AreEqual("WORD: (4,0),(4,1),(4,2),(4,3)", wordSearch.GetVerticalWords(input));
         }
 
         [TestMethod]
@@ -125,7 +125,17 @@ namespace KATAs.Test
 
             string input = wordSearch.GetInput("TestDocument002.txt");
 
-            Assert.AreEqual("WAS: (4,4),(5,4),(6,4)\nTHIS: (6,5),(5,5),(4,5),(3,5)", wordSearch.GetVerticalWords(input));
+            Assert.AreEqual("WAS: (4,4),(4,5),(4,6)\nTHIS: (5,6),(5,5),(5,4),(5,3)", wordSearch.GetVerticalWords(input));
         }
+
+        //[TestMethod]
+        //public void Test007_GivenWordSearch_GetUpwardsDiagonalWordsReturnsWordAndLocationOfLetters()
+        //{
+        //    WordSearch wordSearch = new WordSearch();
+
+        //    string input = wordSearch.GetInput("TestDocument001.txt");
+
+        //    Assert.AreEqual("TEST: (0,3),(1,2),(2,1),(3,0)", wordSearch.GetVerticalWords(input));
+        //}
     }
 }
