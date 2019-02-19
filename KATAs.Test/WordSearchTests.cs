@@ -115,7 +115,7 @@ namespace KATAs.Test
 
             string input = wordSearch.GetInput("TestDocument001.txt");
 
-            Assert.AreEqual("WORD: (0,4),(1,4),(2,4),(3,4)", wordSearch.GetDownwardsVerticalWords(input));
+            Assert.AreEqual("WORD: (0,4),(1,4),(2,4),(3,4)", wordSearch.GetVerticalWords(input));
         }
 
         //[TestMethod]
@@ -139,7 +139,7 @@ namespace KATAs.Test
 
             string input = wordSearch.GetInput("TestDocument002.txt");
 
-            Assert.AreEqual("THIS: (6,5),(5,5),(4,5),(3,5)", wordSearch.GetUpwardsVerticalWords(input));
+            Assert.AreEqual("WAS: (4,4),(5,4),(6,4)\nTHIS: (6,5),(5,5),(4,5),(3,5)", wordSearch.GetVerticalWords(input));
         }
     }
 }

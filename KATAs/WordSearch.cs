@@ -45,7 +45,7 @@ namespace KATAs
             List<string> rowsInWordSearch = GetRowsInWordSearch(input);
 
 
-            // search each line
+            // search each row
             // i is an iteration for each row of the word search
             for (int i = 0; i < rowsInWordSearch.Count; ++i)
             {
@@ -67,95 +67,86 @@ namespace KATAs
             return result;
         }
 
-        public string GetDownwardsVerticalWords(string input)
+        public string GetVerticalWords(string input)
         {
             string result = "";
-            List<string> wordSearchKeywords = GetWordSearchKeywords(input);
+            List<string> keywords = GetWordSearchKeywords(input);
             List<string> rowsInWordSearch = GetRowsInWordSearch(input);
             List<string> columnsInWordSearch = GetColumnsInWordSearch(rowsInWordSearch);
 
-            // search each column
+            // search each line
+            // i is an iteration for each row of the word search
             for (int i = 0; i < columnsInWordSearch.Count; ++i)
             {
-                // using each word that we're looking for
-                for (int j = 0; j < wordSearchKeywords.Count; ++j)
+                // j is an interation for each keyword that can be found in the word search
+                for (int j = 0; j < keywords.Count; ++j)
                 {
                     string column = columnsInWordSearch[i];
 
-
-                    if (column.Contains(wordSearchKeywords[j]))
+                    if (column.Contains(keywords[j]))
                     {
-                        result += wordSearchKeywords[j] + ": ";
-
-                        // find positions of letters
-                        for (int k = 0; k < column.Length; ++k)
-                        {
-                            if (column.Substring(k).Length >= wordSearchKeywords[j].Length)
-                            {
-                                if (column.Substring(k, wordSearchKeywords[j].Length) == (wordSearchKeywords[j]))
-                                {
-                                    for (int l = k; l < wordSearchKeywords[j].Length + k; ++l)
-                                    {
-                                        if (l > k)
-                                        {
-                                            result += ",";
-                                        }
-                                        result += "(" + l + "," + i + ")";
-                                    }
-                                }
-                            }
-                        }
+                        result += newLineIfStringIsNotEmpty(result);
+                        result += keywords[j] + ": " + GetKeywordDownwardsVerticalLetterPositions(i, keywords[j], columnsInWordSearch[i]);
+                    }
+                    else if (column.Contains(ReverseString(keywords[j])))
+                    {
+                        result += newLineIfStringIsNotEmpty(result);
+                        result += keywords[j] + ": " + GetKeywordUpwardsVerticalLetterPositions(i, keywords[j], columnsInWordSearch[i]);
                     }
                 }
             }
-
             return result;
         }
 
-        public string GetUpwardsVerticalWords(string input)
+        public string GetKeywordDownwardsVerticalLetterPositions(int rowIndex, string keyword, string rowString)
         {
             string result = "";
-            List<string> wordSearchKeywords = GetWordSearchKeywords(input);
-            List<string> rowsInWordSearch = GetRowsInWordSearch(input);
-            List<string> columnsInWordSearch = GetColumnsInWordSearch(rowsInWordSearch);
 
-
-            // search each column
-            for (int i = 0; i < columnsInWordSearch.Count; ++i)
+            // find positions
+            // k represents which column position we are looking at in the specified row
+            for (int k = 0; k < rowString.Length; ++k)
             {
-                // using each word that we're looking for
-                for (int j = 0; j < wordSearchKeywords.Count; ++j)
+                if (rowString.Substring(k).Length >= keyword.Length)
                 {
-                    string column = columnsInWordSearch[i];
-
-
-                    if (column.Contains(ReverseString(wordSearchKeywords[j])))
+                    if (rowString.Substring(k, keyword.Length) == keyword)
                     {
-                        result += wordSearchKeywords[j] + ": ";
-
-                        // find positions of letters
-                        for (int k = 0; k < column.Length; ++k)
+                        for (int l = k; l < keyword.Length + k; ++l)
                         {
-                            if (column.Substring(k).Length >= wordSearchKeywords[j].Length)
+                            if (l > k)
                             {
-                                if (column.Substring(k, wordSearchKeywords[j].Length) == ReverseString(wordSearchKeywords[j]))
-                                {
-                                    int xPositionOfFirstLetter = wordSearchKeywords[j].Length + k - 1;
-                                    for (int l = xPositionOfFirstLetter; l > xPositionOfFirstLetter - wordSearchKeywords[j].Length; --l)
-                                    {
-                                        if (l < wordSearchKeywords[j].Length + k - 1)
-                                        {
-                                            result += ",";
-                                        }
-                                        result += "(" + l + "," + i + ")";
-                                    }
-                                }
+                                result += ",";
                             }
+                            result += "(" + l + "," + rowIndex + ")";
                         }
                     }
                 }
             }
+            return result;
+        }
 
+        string GetKeywordUpwardsVerticalLetterPositions(int rowIndex, string keyword, string rowString)
+        {
+            string result = "";
+
+            // find positions of letters
+            for (int k = 0; k < rowString.Length; ++k)
+            {
+                if (rowString.Substring(k).Length >= keyword.Length)
+                {
+                    if (rowString.Substring(k, keyword.Length) == ReverseString(keyword))
+                    {
+                        int xPositionOfFirstLetter = keyword.Length + k - 1;
+                        for (int l = xPositionOfFirstLetter; l > xPositionOfFirstLetter - keyword.Length; --l)
+                        {
+                            if (l < keyword.Length + k - 1)
+                            {
+                                result += ",";
+                            }
+                            result += "(" + l + "," + rowIndex + ")";
+                        }
+                    }
+                }
+            }
             return result;
         }
 
@@ -291,6 +282,16 @@ namespace KATAs
             }
 
             return result;
+        }
+
+        public string newLineIfStringIsNotEmpty(string str)
+        {
+            if (str != "")
+            {
+                return "\n";
+            }
+
+            return "";
         }
 
         // taken from
