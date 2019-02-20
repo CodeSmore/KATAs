@@ -156,5 +156,15 @@ namespace KATAs.Test
 
             CollectionAssert.AreEqual(expectedResult, actualResult);
         }
+
+        [TestMethod]
+        public void Test008_GivenWordSearch_GetDownwardDiagonalsInWordSearchReturnsWordAndLocationOfLetters()
+        {
+            WordSearch wordSearch = new WordSearch();
+
+            string input = wordSearch.GetInput("TestDocument002.txt");
+
+            Assert.AreEqual("FILE: (0,2),(1,3),(2,4),(3,5)", wordSearch.GetDownwardDiagonalWords(input));
+        }
     }
 }
