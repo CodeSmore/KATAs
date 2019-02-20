@@ -127,6 +127,38 @@ namespace KATAs
             return result;
         }
 
+        public string GetDownwardDiagonalWords(string input)
+        {
+            string result = "";
+            List<string> keywords = GetWordSearchKeywords(input);
+            List<string> rowsInWordSearch = GetRowsInWordSearch(input);
+            List<string> downwardDiagonalsInWordSearch = GetDownwardDiagonalsInWordSearch(rowsInWordSearch);
+
+            // search each line
+            // i is an iteration for each row of the word search
+            for (int i = 0; i < downwardDiagonalsInWordSearch.Count; ++i)
+            {
+                // j is an interation for each keyword that can be found in the word search
+                for (int j = 0; j < keywords.Count; ++j)
+                {
+                    string diagonal = downwardDiagonalsInWordSearch[i];
+
+                    if (diagonal.Contains(keywords[j]))
+                    {
+                        result += newLineIfStringIsNotEmpty(result);
+                        result += keywords[j] + ": " + GetKeywordUpwardDiagonalLetterPositions(i, keywords[j], downwardDiagonalsInWordSearch[i]);
+                    }
+                    else if (diagonal.Contains(ReverseString(keywords[j])))
+                    {
+                        result += newLineIfStringIsNotEmpty(result);
+                        result += keywords[j] + ": " + GetKeywordBackwardsUpwardDiagonalLetterPositions(i, keywords[j], downwardDiagonalsInWordSearch[i]);
+
+                    }
+                }
+            }
+            return result;
+        }
+
         string GetKeywordDownwardsVerticalLetterPositions(int columnIndex, string keyword, string columnString)
         {
             string result = "";
@@ -340,6 +372,57 @@ namespace KATAs
         }
 
         public List<string> GetUpwardDiagonalsInWordSearch(List<string> rowsInWordSearch)
+        {
+            List<string> result = new List<string>();
+            string[,] wordSearchArray = new string[rowsInWordSearch[0].Length, rowsInWordSearch.Count];
+
+            for (int i = 0; i < rowsInWordSearch[0].Length; ++i)
+            {
+                for (int j = 0; j < rowsInWordSearch.Count; ++j)
+                {
+                    wordSearchArray[i, j] = rowsInWordSearch[j].Substring(i, 1);
+                }
+            }
+
+            string newDiagonal = "";
+            // fill w/ x = 0 starting points
+            for (int i = 0; i < wordSearchArray.GetLength(1); ++i)
+            {
+                int xStep = 0, yStep = i;
+
+                while (xStep <= i && yStep >= 0)
+                {
+                    newDiagonal += wordSearchArray[xStep, yStep];
+
+                    xStep++;
+                    yStep--;
+                }
+
+                result.Add(newDiagonal);
+                newDiagonal = "";
+            }
+
+            // fill w/ y = wordSearchArray.GetLength(1) - 1 starting points
+            for (int i = 1; i < wordSearchArray.GetLength(1); ++i)
+            {
+                int xStep = i, yStep = wordSearchArray.GetLength(1) - 1;
+
+                while (xStep < wordSearchArray.GetLength(1) && yStep >= 0)
+                {
+                    newDiagonal += wordSearchArray[xStep, yStep];
+
+                    xStep++;
+                    yStep--;
+                }
+
+                result.Add(newDiagonal);
+                newDiagonal = "";
+            }
+
+            return result;
+        }
+
+        public List<string> GetDownwardDiagonalsInWordSearch(List<string> rowsInWordSearch)
         {
             List<string> result = new List<string>();
             string[,] wordSearchArray = new string[rowsInWordSearch[0].Length, rowsInWordSearch.Count];

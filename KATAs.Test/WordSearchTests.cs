@@ -166,5 +166,18 @@ namespace KATAs.Test
 
             Assert.AreEqual("FILE: (0,2),(1,3),(2,4),(3,5)", wordSearch.GetDownwardDiagonalWords(input));
         }
+
+        [TestMethod]
+        public void Test008_HelperMethod001_GivenWordSearch_GetDownwardDiagonalsInWordSearchReturnsAListOfStringsEachContainingADiagonalFromThePuzzle()
+        {
+            WordSearch wordSearch = new WordSearch();
+
+            string input = wordSearch.GetInput("TestDocument002.txt");
+
+            List<string> expectedResult = new List<string>(new string[] { "B", "XV", "SVL", "TEST", "KPEOW", "TWKO", "EXR", "SD", "D" });
+            List<string> actualResult = wordSearch.GetDownwardDiagonalsInWordSearch(wordSearch.GetRowsInWordSearch(input));
+
+            CollectionAssert.AreEqual(expectedResult, actualResult);
+        }
     }
 }
