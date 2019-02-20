@@ -174,7 +174,7 @@ namespace KATAs.Test
 
             string input = wordSearch.GetInput("TestDocument002.txt");
 
-            List<string> expectedResult = new List<string>(new string[] { "B", "XV", "SVL", "TEST", "KPEOW", "TWKO", "EXR", "SD", "D" });
+            List<string> expectedResult = new List<string>(new string[] { "H", "LK", "VQO", "TSTC", "CLSSN", "TSEYIJ", "LDTXWHI", "DUTYAT", "FILES", "JHLK", "SMR", "EI", "Q" });
             List<string> actualResult = wordSearch.GetDownwardDiagonalsInWordSearch(wordSearch.GetRowsInWordSearch(input));
 
             CollectionAssert.AreEqual(expectedResult, actualResult);
