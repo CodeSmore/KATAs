@@ -134,8 +134,6 @@ namespace KATAs
             List<string> rowsInWordSearch = GetRowsInWordSearch(input);
             List<string> downwardDiagonalsInWordSearch = GetDownwardDiagonalsInWordSearch(rowsInWordSearch);
 
-            // search each line
-            // i is an iteration for each row of the word search
             for (int i = 0; i < downwardDiagonalsInWordSearch.Count; ++i)
             {
                 // j is an interation for each keyword that can be found in the word search
@@ -145,13 +143,20 @@ namespace KATAs
 
                     if (diagonal.Contains(keywords[j]))
                     {
+                        int diagonalIndex = i;
+
+                        if (i > downwardDiagonalsInWordSearch.Count / 2)
+                        {
+                            diagonalIndex = i - downwardDiagonalsInWordSearch.Count / 2;
+                        }
+
                         result += newLineIfStringIsNotEmpty(result);
-                        result += keywords[j] + ": " + GetKeywordUpwardDiagonalLetterPositions(i, keywords[j], downwardDiagonalsInWordSearch[i]);
+                        result += keywords[j] + ": " + GetKeywordDownwardDiagonalLetterPositions(diagonalIndex, keywords[j], downwardDiagonalsInWordSearch[i]);
                     }
                     else if (diagonal.Contains(ReverseString(keywords[j])))
                     {
-                        result += newLineIfStringIsNotEmpty(result);
-                        result += keywords[j] + ": " + GetKeywordBackwardsUpwardDiagonalLetterPositions(i, keywords[j], downwardDiagonalsInWordSearch[i]);
+                        //result += newLineIfStringIsNotEmpty(result);
+                        //result += keywords[j] + ": " + GetKeywordBackwardsDownwardDiagonalLetterPositions(i, keywords[j], downwardDiagonalsInWordSearch[i]);
 
                     }
                 }
@@ -263,7 +268,7 @@ namespace KATAs
             return result;
         }
 
-        string GetKeywordUpwardDiagonalLetterPositions(int rowIndex, string keyword, string diagonalString)
+        string GetKeywordUpwardDiagonalLetterPositions(int diagonalIndex, string keyword, string diagonalString)
         {
             string result = "";
 
@@ -280,7 +285,7 @@ namespace KATAs
                             {
                                 result += ",";
                             }
-                            result += "(" + l + "," + rowIndex-- + ")";
+                            result += "(" + l + "," + diagonalIndex-- + ")";
                         }
                     }
                 }
@@ -288,7 +293,7 @@ namespace KATAs
             return result;
         }
 
-        string GetKeywordBackwardsUpwardDiagonalLetterPositions(int rowIndex, string keyword, string diagonalString)
+        string GetKeywordBackwardsUpwardDiagonalLetterPositions(int diagonalIndex, string keyword, string diagonalString)
         {
             string result = "";
 
@@ -300,7 +305,7 @@ namespace KATAs
                     if (diagonalString.Substring(k, keyword.Length) == ReverseString(keyword))
                     {
                         int xPositionOfFirstLetter = keyword.Length + k - 1;
-                        int yPositionOfLetter = rowIndex - (keyword.Length - 1);
+                        int yPositionOfLetter = diagonalIndex - (keyword.Length - 1);
 
                         for (int l = xPositionOfFirstLetter; l > xPositionOfFirstLetter - keyword.Length; --l)
                         {
@@ -309,6 +314,33 @@ namespace KATAs
                                 result += ",";
                             }
                             result += "(" + l + "," + yPositionOfLetter++ + ")";
+                        }
+                    }
+                }
+            }
+            return result;
+        }
+
+        string GetKeywordDownwardDiagonalLetterPositions(int diagonalIndex, string keyword, string diagonalString)
+        {
+            string result = "";
+
+            //diagonalIndex = 2;
+
+            // find positions of letters
+            for (int k = 0; k < diagonalString.Length; ++k)
+            {
+                if (diagonalString.Substring(k).Length >= keyword.Length)
+                {
+                    if (diagonalString.Substring(k, keyword.Length) == keyword)
+                    {
+                        for (int l = k; l < keyword.Length; ++l)
+                        {
+                            if (l > k)
+                            {
+                                result += ",";
+                            }
+                            result += "(" + l + "," + diagonalIndex++ + ")";
                         }
                     }
                 }
@@ -436,34 +468,34 @@ namespace KATAs
             }
 
             string newDiagonal = "";
-            // fill w/ x = 0 starting points
-            for (int i = 0; i < wordSearchArray.GetLength(1); ++i)
+            // fill w/ x = row.length-1 starting points
+            for (int i = wordSearchArray.GetLength(0) - 1; i >= 0; --i)
             {
-                int xStep = 0, yStep = i;
+                int xStep = i, yStep = 0;
 
-                while (xStep <= i && yStep >= 0)
+                while (xStep < wordSearchArray.GetLength(0) && yStep < wordSearchArray.GetLength(1))
                 {
                     newDiagonal += wordSearchArray[xStep, yStep];
 
                     xStep++;
-                    yStep--;
+                    yStep++;
                 }
 
                 result.Add(newDiagonal);
                 newDiagonal = "";
             }
 
-            // fill w/ y = wordSearchArray.GetLength(1) - 1 starting points
+            // fill w/ y = i starting points
             for (int i = 1; i < wordSearchArray.GetLength(1); ++i)
             {
-                int xStep = i, yStep = wordSearchArray.GetLength(1) - 1;
+                int xStep = 0, yStep = i;
 
-                while (xStep < wordSearchArray.GetLength(1) && yStep >= 0)
+                while (xStep < wordSearchArray.GetLength(0) && yStep < wordSearchArray.GetLength(1))
                 {
                     newDiagonal += wordSearchArray[xStep, yStep];
 
                     xStep++;
-                    yStep--;
+                    yStep++;
                 }
 
                 result.Add(newDiagonal);

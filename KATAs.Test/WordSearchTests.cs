@@ -177,6 +177,8 @@ namespace KATAs.Test
             List<string> expectedResult = new List<string>(new string[] { "H", "LK", "VQO", "TSTC", "CLSSN", "TSEYIJ", "LDTXWHI", "DUTYAT", "FILES", "JHLK", "SMR", "EI", "Q" });
             List<string> actualResult = wordSearch.GetDownwardDiagonalsInWordSearch(wordSearch.GetRowsInWordSearch(input));
 
+            Assert.AreEqual(expectedResult.Count, actualResult.Count);
+            Assert.AreEqual(expectedResult[0], actualResult[0]);
             CollectionAssert.AreEqual(expectedResult, actualResult);
         }
     }
