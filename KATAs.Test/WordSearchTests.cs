@@ -165,6 +165,12 @@ namespace KATAs.Test
             string input = wordSearch.GetInput("TestDocument002.txt");
 
             Assert.AreEqual("FILE: (0,2),(1,3),(2,4),(3,5)", wordSearch.GetDownwardDiagonalWords(input));
+
+            // ----------------------------------------------------------------------------------------------
+
+            input = wordSearch.GetInput("TestDocument004_InverseOf002.txt");
+
+            Assert.AreEqual("FILE: (6,4),(5,3),(4,2),(3,1)", wordSearch.GetDownwardDiagonalWords(input));
         }
 
         [TestMethod]
@@ -176,9 +182,7 @@ namespace KATAs.Test
 
             List<string> expectedResult = new List<string>(new string[] { "H", "LK", "VQO", "TSTC", "CLSSN", "TSEYIJ", "LDTXWHI", "DUTYAT", "FILES", "JHLK", "SMR", "EI", "Q" });
             List<string> actualResult = wordSearch.GetDownwardDiagonalsInWordSearch(wordSearch.GetRowsInWordSearch(input));
-
-            Assert.AreEqual(expectedResult.Count, actualResult.Count);
-            Assert.AreEqual(expectedResult[0], actualResult[0]);
+    
             CollectionAssert.AreEqual(expectedResult, actualResult);
         }
     }

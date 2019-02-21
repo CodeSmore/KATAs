@@ -141,22 +141,22 @@ namespace KATAs
                 {
                     string diagonal = downwardDiagonalsInWordSearch[i];
 
+                    int diagonalIndex = i;
+
+                    if (i > downwardDiagonalsInWordSearch.Count / 2)
+                    {
+                        diagonalIndex = i - downwardDiagonalsInWordSearch.Count / 2;
+                    }
+
                     if (diagonal.Contains(keywords[j]))
                     {
-                        int diagonalIndex = i;
-
-                        if (i > downwardDiagonalsInWordSearch.Count / 2)
-                        {
-                            diagonalIndex = i - downwardDiagonalsInWordSearch.Count / 2;
-                        }
-
                         result += newLineIfStringIsNotEmpty(result);
                         result += keywords[j] + ": " + GetKeywordDownwardDiagonalLetterPositions(diagonalIndex, keywords[j], downwardDiagonalsInWordSearch[i]);
                     }
                     else if (diagonal.Contains(ReverseString(keywords[j])))
                     {
-                        //result += newLineIfStringIsNotEmpty(result);
-                        //result += keywords[j] + ": " + GetKeywordBackwardsDownwardDiagonalLetterPositions(i, keywords[j], downwardDiagonalsInWordSearch[i]);
+                        result += newLineIfStringIsNotEmpty(result);
+                        result += keywords[j] + ": " + GetKeywordBackwardsDownwardDiagonalLetterPositions(diagonalIndex, keywords[j], downwardDiagonalsInWordSearch[i]);
 
                     }
                 }
@@ -333,6 +333,33 @@ namespace KATAs
                 if (diagonalString.Substring(k).Length >= keyword.Length)
                 {
                     if (diagonalString.Substring(k, keyword.Length) == keyword)
+                    {
+                        for (int l = k; l < keyword.Length; ++l)
+                        {
+                            if (l > k)
+                            {
+                                result += ",";
+                            }
+                            result += "(" + l + "," + diagonalIndex++ + ")";
+                        }
+                    }
+                }
+            }
+            return result;
+        }
+
+        string GetKeywordBackwardsDownwardDiagonalLetterPositions(int diagonalIndex, string keyword, string diagonalString)
+        {
+            string result = "";
+
+            //diagonalIndex = 2;
+
+            // find positions of letters
+            for (int k = 0; k < diagonalString.Length; ++k)
+            {
+                if (diagonalString.Substring(k).Length >= keyword.Length)
+                {
+                    if (diagonalString.Substring(k, keyword.Length) == ReverseString(keyword))
                     {
                         for (int l = k; l < keyword.Length; ++l)
                         {
