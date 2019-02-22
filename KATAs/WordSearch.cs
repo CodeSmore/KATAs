@@ -326,13 +326,13 @@ namespace KATAs
                 if (diagonalString.Substring(k).Length >= keyword.Length)
                 {
                     if (diagonalString.Substring(k, keyword.Length) == keyword)
-                    {
+                    {                        
+                        // find x and y positions of first letter in the keyword
                         int xPositionOfFirstLetter = k;
                         int yPositionOfFirstLetter = k;
 
                         int indexOfDiagonalAtOrigin = numberOfDiagonals / 2;
 
-                        // find x and y positions of first letter in the keyword
                         if (diagonalIndex < indexOfDiagonalAtOrigin)
                         {
                             xPositionOfFirstLetter += indexOfDiagonalAtOrigin - diagonalIndex;
@@ -342,7 +342,8 @@ namespace KATAs
                             yPositionOfFirstLetter += diagonalIndex - indexOfDiagonalAtOrigin;
                         }
 
-                        for (int l = xPositionOfFirstLetter; l < keyword.Length; ++l)
+                        // find the positions for each letter in the keyword
+                        for (int l = xPositionOfFirstLetter; l < keyword.Length + xPositionOfFirstLetter; ++l)
                         {
                             if (l > xPositionOfFirstLetter)
                             {
@@ -367,12 +368,12 @@ namespace KATAs
                 {
                     if (diagonalString.Substring(k, keyword.Length) == ReverseString(keyword))
                     {
+                        // find x and y positions of first letter in the keyword
                         int xPositionOfFirstLetter = k + keyword.Length - 1;
                         int yPositionOfFirstLetter = k + keyword.Length - 1;
 
                         int indexOfDiagonalAtOrigin = numberOfDiagonals / 2;
-
-                        // find x and y positions of first letter in the keyword
+                     
                         if (diagonalIndex < indexOfDiagonalAtOrigin)
                         {
                             xPositionOfFirstLetter += indexOfDiagonalAtOrigin - diagonalIndex;
@@ -382,7 +383,7 @@ namespace KATAs
                             yPositionOfFirstLetter += diagonalIndex - indexOfDiagonalAtOrigin;
                         }
                         
-
+                        // find the positions for each letter in the keyword
                         for (int l = xPositionOfFirstLetter; l > xPositionOfFirstLetter - keyword.Length; --l)
                         {
                             if (l < xPositionOfFirstLetter)

@@ -1,0 +1,7 @@
+ABC,DEF,GHI,JKL,MNO,PQR
+R,A,X,X,X,X
+X,Q,B,L,X,X
+D,X,P,C,K,X
+X,E,I,M,X,J
+X,X,F,H,N,X
+X,X,X,X,G,O

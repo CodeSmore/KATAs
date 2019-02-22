@@ -162,12 +162,13 @@ namespace KATAs.Test
         {
             WordSearch wordSearch = new WordSearch();
 
+            // Forward
             string input = wordSearch.GetInput("TestDocument002.txt");
 
             Assert.AreEqual("FILE: (0,2),(1,3),(2,4),(3,5)", wordSearch.GetDownwardDiagonalWords(input));
 
             // ----------------------------------------------------------------------------------------------
-
+            // Reverse
             input = wordSearch.GetInput("TestDocument004_InverseOf002.txt");
 
             Assert.AreEqual("FILE: (6,4),(5,3),(4,2),(3,1)", wordSearch.GetDownwardDiagonalWords(input));
@@ -184,6 +185,32 @@ namespace KATAs.Test
             List<string> actualResult = wordSearch.GetDownwardDiagonalsInWordSearch(wordSearch.GetRowsInWordSearch(input));
     
             CollectionAssert.AreEqual(expectedResult, actualResult);
+        }
+
+        [TestMethod]
+        public void Test009_GivenWordSearch_GetDownwardDiagonalsReturnsWordAndLocationOfLetters_ForAllDownwardDiagonalCases()
+        {
+            WordSearch wordSearch = new WordSearch();
+
+            string input = wordSearch.GetInput("TestDocument006_DownwardDiagonalTests.txt");
+
+            string expectedResult = "ABC: (1,0),(2,1),(3,2)\nDEF: (0,2),(1,3),(2,4)\nGHI: (4,5),(3,4),(2,3)\nJKL: (5,3),(4,2),(3,1)\nMNO: (3,3),(4,4),(5,5)\nPQR: (2,2),(1,1),(0,0)";
+            string actualResult = wordSearch.GetDownwardDiagonalWords(input);
+
+            Assert.AreEqual(expectedResult, actualResult);
+        }
+
+        [TestMethod]
+        public void Test010_GivenWordSearch_GetDownwardDiagonalsReturnsWordAndLocationOfLetters_ForAllUpwardDiagonalCases()
+        {
+            WordSearch wordSearch = new WordSearch();
+
+            string input = wordSearch.GetInput("TestDocument007_UpwardDiagonalTests.txt");
+
+            string expectedResult = "ABC: (0,4),(1,3),(2,2)\nDEF: (1,5),(2,4),(3,3)\nGHI: (3,0),(2,1),(1,2)\nJKL: (4,3),(3,4),(2,5)\nMNO: (0,5),(1,4),(2,3)\nPQR: (5,0),(4,1),(3,2)";
+            string actualResult = wordSearch.GetUpwardsDiagonalWords(input);
+
+            Assert.AreEqual(expectedResult, actualResult);
         }
     }
 }
