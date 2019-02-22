@@ -140,24 +140,17 @@ namespace KATAs
                 for (int j = 0; j < keywords.Count; ++j)
                 {
                     string diagonal = downwardDiagonalsInWordSearch[i];
-
                     int diagonalIndex = i;
-
-                    if (i > downwardDiagonalsInWordSearch.Count / 2)
-                    {
-                        diagonalIndex = i - downwardDiagonalsInWordSearch.Count / 2;
-                    }
 
                     if (diagonal.Contains(keywords[j]))
                     {
                         result += newLineIfStringIsNotEmpty(result);
-                        result += keywords[j] + ": " + GetKeywordDownwardDiagonalLetterPositions(diagonalIndex, keywords[j], downwardDiagonalsInWordSearch[i]);
+                        result += keywords[j] + ": " + GetKeywordDownwardDiagonalLetterPositions(diagonalIndex, keywords[j], downwardDiagonalsInWordSearch[i], downwardDiagonalsInWordSearch.Count);
                     }
                     else if (diagonal.Contains(ReverseString(keywords[j])))
                     {
                         result += newLineIfStringIsNotEmpty(result);
-                        result += keywords[j] + ": " + GetKeywordBackwardsDownwardDiagonalLetterPositions(diagonalIndex, keywords[j], downwardDiagonalsInWordSearch[i]);
-
+                        result += keywords[j] + ": " + GetKeywordBackwardsDownwardDiagonalLetterPositions(diagonalIndex, keywords[j], downwardDiagonalsInWordSearch[i], downwardDiagonalsInWordSearch.Count);
                     }
                 }
             }
@@ -321,7 +314,7 @@ namespace KATAs
             return result;
         }
 
-        string GetKeywordDownwardDiagonalLetterPositions(int diagonalIndex, string keyword, string diagonalString)
+        string GetKeywordDownwardDiagonalLetterPositions(int diagonalIndex, string keyword, string diagonalString, int numberOfDiagonals)
         {
             string result = "";
 
@@ -334,13 +327,28 @@ namespace KATAs
                 {
                     if (diagonalString.Substring(k, keyword.Length) == keyword)
                     {
-                        for (int l = k; l < keyword.Length; ++l)
+                        int xPositionOfFirstLetter = k;
+                        int yPositionOfFirstLetter = k;
+
+                        int indexOfDiagonalAtOrigin = numberOfDiagonals / 2;
+
+                        // find x and y positions of first letter in the keyword
+                        if (diagonalIndex < indexOfDiagonalAtOrigin)
                         {
-                            if (l > k)
+                            xPositionOfFirstLetter += indexOfDiagonalAtOrigin - diagonalIndex;
+                        }
+                        else if (diagonalIndex > indexOfDiagonalAtOrigin)
+                        {
+                            yPositionOfFirstLetter += diagonalIndex - indexOfDiagonalAtOrigin;
+                        }
+
+                        for (int l = xPositionOfFirstLetter; l < keyword.Length; ++l)
+                        {
+                            if (l > xPositionOfFirstLetter)
                             {
                                 result += ",";
                             }
-                            result += "(" + l + "," + diagonalIndex++ + ")";
+                            result += "(" + l + "," + yPositionOfFirstLetter++ + ")";
                         }
                     }
                 }
@@ -348,11 +356,9 @@ namespace KATAs
             return result;
         }
 
-        string GetKeywordBackwardsDownwardDiagonalLetterPositions(int diagonalIndex, string keyword, string diagonalString)
+        string GetKeywordBackwardsDownwardDiagonalLetterPositions(int diagonalIndex, string keyword, string diagonalString, int numberOfDiagonals)
         {
             string result = "";
-
-            //diagonalIndex = 2;
 
             // find positions of letters
             for (int k = 0; k < diagonalString.Length; ++k)
@@ -361,13 +367,29 @@ namespace KATAs
                 {
                     if (diagonalString.Substring(k, keyword.Length) == ReverseString(keyword))
                     {
-                        for (int l = k; l < keyword.Length; ++l)
+                        int xPositionOfFirstLetter = k + keyword.Length - 1;
+                        int yPositionOfFirstLetter = k + keyword.Length - 1;
+
+                        int indexOfDiagonalAtOrigin = numberOfDiagonals / 2;
+
+                        // find x and y positions of first letter in the keyword
+                        if (diagonalIndex < indexOfDiagonalAtOrigin)
                         {
-                            if (l > k)
+                            xPositionOfFirstLetter += indexOfDiagonalAtOrigin - diagonalIndex;
+                        }
+                        else if (diagonalIndex > indexOfDiagonalAtOrigin)
+                        {
+                            yPositionOfFirstLetter += diagonalIndex - indexOfDiagonalAtOrigin;
+                        }
+                        
+
+                        for (int l = xPositionOfFirstLetter; l > xPositionOfFirstLetter - keyword.Length; --l)
+                        {
+                            if (l < xPositionOfFirstLetter)
                             {
                                 result += ",";
                             }
-                            result += "(" + l + "," + diagonalIndex++ + ")";
+                            result += "(" + l + "," + yPositionOfFirstLetter-- + ")";
                         }
                     }
                 }
