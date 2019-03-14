@@ -1,16 +1,18 @@
 Complementary DNA KATA Instructions
 ------------------------------------------
 KATA taken from https://www.codewars.com/kata/complementary-dna/train/csharp
-For Best Practice Solutions:
+For Best Practice Solutions: https://www.codewars.com/kata/554e4a2f232cdd87d9000038/solutions/csharp
 ------------------------------------------
 
-Summary: Take in an input string. The output string will have characters 'A' switched
+Summary: 
+Take in an input string. The output string will have characters 'A' switched
 to 'T' and reverse, as well as 'C' switched to 'G' and reverse.
 
 A <==> T
 C <==> G
 
 ------------------------------------------
+
 Instructions:
 
 Deoxyribonucleic acid (DNA) is a chemical found in the nucleus of cells and carries the 
