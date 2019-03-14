@@ -1,7 +1,7 @@
 The Highest Profit Wins! KATA Instructions
 ------------------------------------------
 KATA taken from https://www.codewars.com/kata/the-highest-profit-wins/train/csharp
-For Best Practice Solutions:
+For Best Practice Solutions: https://www.codewars.com/kata/559590633066759614000063/solutions/csharp
 ------------------------------------------
 
 Story:

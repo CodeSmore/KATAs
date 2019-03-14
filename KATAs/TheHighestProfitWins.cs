@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
 
 namespace KATAs
 {
@@ -27,5 +28,12 @@ namespace KATAs
 
             return new int[] { min, max };
         }
+
+        /* Best Practice
+        public int[] MinMax(int[] lst)
+        {
+            return new int[] {lst.Min(), lst.Max()};
+        }
+         */
     }
 }
