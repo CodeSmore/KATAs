@@ -20,6 +20,14 @@ namespace KATAs
                 {
                     result += 'A';
                 }
+                else if (character == 'C')
+                {
+                    result += 'G';
+                }
+                else if (character == 'G')
+                {
+                    result += 'C';
+                }
                 else
                 {
                     result += character;

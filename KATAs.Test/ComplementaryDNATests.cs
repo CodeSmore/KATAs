@@ -29,5 +29,25 @@ namespace KATAs.Test
 
             Assert.AreEqual("ANA", compDNA.MakeComplement(input));
         }
+
+        [TestMethod]
+        public void Test003_GivenComplementaryDNA_WhenInputHasC_ThenReplaceCWithG()
+        {
+            ComplementaryDNA compDNA = new ComplementaryDNA();
+
+            string input = "CRUB";
+
+            Assert.AreEqual("GRUB", compDNA.MakeComplement(input));
+        }
+
+        [TestMethod]
+        public void Test004_GivenComplementaryDNA_WhenInputHasG_ThenReplaceGWithC()
+        {
+            ComplementaryDNA compDNA = new ComplementaryDNA();
+
+            string input = "XGZGQ";
+
+            Assert.AreEqual("XCZCQ", compDNA.MakeComplement(input));
+        }
     }
 }
