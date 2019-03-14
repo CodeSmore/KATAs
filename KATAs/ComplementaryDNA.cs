@@ -12,25 +12,23 @@ namespace KATAs
 
             foreach (char character in dna)
             {
-                if (character == 'A')
+                switch (character)
                 {
-                    result += 'T';
-                }
-                else if (character == 'T')
-                {
-                    result += 'A';
-                }
-                else if (character == 'C')
-                {
-                    result += 'G';
-                }
-                else if (character == 'G')
-                {
-                    result += 'C';
-                }
-                else
-                {
-                    result += character;
+                    case 'A':
+                        result += 'T';
+                        break;
+                    case 'T':
+                        result += 'A';
+                        break;
+                    case 'C':
+                        result += 'G';
+                        break;
+                    case 'G':
+                        result += 'C';
+                        break;
+                    default:
+                        result += character;
+                        break;
                 }
             }
 
