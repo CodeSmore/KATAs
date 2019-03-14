@@ -16,6 +16,10 @@ namespace KATAs
                 {
                     result += 'T';
                 }
+                else if (character == 'T')
+                {
+                    result += 'A';
+                }
                 else
                 {
                     result += character;

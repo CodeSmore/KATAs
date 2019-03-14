@@ -19,5 +19,15 @@ namespace KATAs.Test
 
             Assert.AreEqual("DNT", compDNA.MakeComplement(input));
         }
+
+        [TestMethod]
+        public void Test002_GivenComplementaryDNA_WhenInputHasT_ThenReplaceTWithA()
+        {
+            ComplementaryDNA compDNA = new ComplementaryDNA();
+
+            string input = "TNT";
+
+            Assert.AreEqual("ANA", compDNA.MakeComplement(input));
+        }
     }
 }
