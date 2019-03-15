@@ -15,5 +15,13 @@ namespace KATAs.Test
 
             Assert.IsFalse(DetectPangram.IsPangram(input));
         }
+
+        [TestMethod]
+        public void Test002_GivenDetectPangram_WhenInputIsAPangram_ThenIsPangramReturnsTrue()
+        {
+            string input = "The quick brown fox jumps over the lazy dog";
+
+            Assert.IsTrue(DetectPangram.IsPangram(input));
+        }
     }
 }

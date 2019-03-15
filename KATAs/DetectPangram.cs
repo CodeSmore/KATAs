@@ -8,7 +8,18 @@ namespace KATAs
     {
         public static bool IsPangram(string str)
         {
-            return false;
+            string alphabetString = "abcdefghijklmnopqrstuvwxyz";
+            int lettersRemaining = 26;
+
+            foreach (char letter in alphabetString)
+            {
+                if (str.Contains(letter))
+                {
+                    lettersRemaining--;
+                }
+            }
+
+            return (lettersRemaining == 0);
         }
     }
 }
