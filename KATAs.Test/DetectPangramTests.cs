@@ -23,5 +23,13 @@ namespace KATAs.Test
 
             Assert.IsTrue(DetectPangram.IsPangram(input));
         }
+
+        [TestMethod]
+        public void Test003_GivenDetectPangram_WhenInputIsAPangramButUsesUpperAndLowerCase_ThenIsPangramReturnsTrue()
+        {
+            string input = "AbCdEfGhIjKlM zYxWvUtSrQpOn";
+
+            Assert.IsTrue(DetectPangram.IsPangram(input));
+        }
     }
 }

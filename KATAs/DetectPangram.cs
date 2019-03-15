@@ -10,6 +10,7 @@ namespace KATAs
         {
             string alphabetString = "abcdefghijklmnopqrstuvwxyz";
             int lettersRemaining = 26;
+            str = str.ToLower();
 
             foreach (char letter in alphabetString)
             {
