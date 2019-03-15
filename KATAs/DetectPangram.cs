@@ -22,5 +22,11 @@ namespace KATAs
 
             return (lettersRemaining == 0);
         }
+
+        // Best Practice on CodeWars.com uses a Linq statement
+        //public static bool IsPangram(string str)
+        //{
+        //    return str.Where(ch => Char.IsLetter(ch)).Select(ch => Char.ToLower(ch)).Distinct().Count() == 26;
+        //}
     }
 }

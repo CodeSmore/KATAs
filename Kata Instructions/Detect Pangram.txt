@@ -1,7 +1,7 @@
 The Highest Profit Wins! KATA Instructions
 ------------------------------------------
 KATA taken from https://www.codewars.com/kata/detect-pangram/train/csharp
-For Best Practice Solutions: 
+For Best Practice Solutions: https://www.codewars.com/kata/545cedaa9943f7fe7b000048/solutions/csharp
 ------------------------------------------
 
 Story:
