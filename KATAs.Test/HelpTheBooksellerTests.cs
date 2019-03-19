@@ -11,7 +11,7 @@ namespace KATAs.Test
     public class HelpTheBooksellerTests
     {
         [TestMethod]
-        public void Test001_GivenHelpTheBookseller_WhenTheStockIsEmpty_ThenTheSummaryReturnsAllCategoriesAsEmpty()
+        public void Test001_GivenHelpTheBookseller_WhenTheStockQuantitiesAreZero_ThenTheSummaryReturnsAllCategoriesAsEmpty()
         {
             string[] stockList = new string[] { "ABART 0", "CDXEF 0", "BKWRK 0"};
             string[] categoryList = new string[] { "A", "B", "C" };
@@ -29,6 +29,18 @@ namespace KATAs.Test
             string[] categoryList = new string[] { "A", "B", "C" };
 
             string expectedResult = "(A : 10) - (B : 12) - (C : 5)";
+            string actualResult = HelpTheBookseller.GetStockSummary(stockList, categoryList);
+
+            Assert.AreEqual(expectedResult, actualResult);
+        }
+
+        [TestMethod]
+        public void Test003_GivenHelpTheBookseller_WhenStockListIsAnEmptyArray_ThenTheSummaryReturnsEmptyString()
+        {
+            string[] stockList = new string[] { };
+            string[] categoryList = new string[] { "A", "B", "C" };
+
+            string expectedResult = "";
             string actualResult = HelpTheBookseller.GetStockSummary(stockList, categoryList);
 
             Assert.AreEqual(expectedResult, actualResult);

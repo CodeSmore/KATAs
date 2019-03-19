@@ -8,6 +8,11 @@ namespace KATAs
     {
         public static string GetStockSummary(string[] stockList, string[] categoryList)
         {
+            if (stockList.Length == 0)
+            {
+                return "";
+            }
+
             Dictionary<char, int> stockSummaryDict = AddCategoriesToStockSummaryDictionary(categoryList);
             stockSummaryDict = AddStockValuesToStockSummaryDictionary(stockSummaryDict, stockList);
 
