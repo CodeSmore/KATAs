@@ -2,7 +2,7 @@ Help The Bookseller! - KATA Instructions
 ---------------------------------------
 
 Kata taken from https://www.codewars.com/kata/54dc6f5a224c26032800005c/train/csharp
-For Best Practice Solutions: 
+For Best Practice Solutions: https://www.codewars.com/kata/54dc6f5a224c26032800005c/solutions/csharp
 
 ---------------------------------------
 
