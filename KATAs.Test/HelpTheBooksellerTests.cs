@@ -47,6 +47,18 @@ namespace KATAs.Test
         }
 
         [TestMethod]
+        public void Test004_GivenHelpTheBookseller_WhenCategoryListIsAnEmptyArray_ThenTheSummaryReturnsEmptyString()
+        {
+            string[] stockList = new string[] { "ABART 10", "CDXEF 5", "BKWRK 10", "BCTK 2" };
+            string[] categoryList = new string[] { };
+
+            string expectedResult = "";
+            string actualResult = HelpTheBookseller.GetStockSummary(stockList, categoryList);
+
+            Assert.AreEqual(expectedResult, actualResult);
+        }
+
+        [TestMethod]
         public void TestHelperMethod001_GivenHelpTheBookseller_WhenAddCategoriesToStockSummaryDictionaryIsCalled_ReturnDicionaryCategoriesAsKeysAndZeroForEachValue()
         {
             string[] categoryList = new string[] { "A", "B", "W" };
