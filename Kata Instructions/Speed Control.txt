@@ -2,7 +2,7 @@ Speed Control - KATA Instructions
 ---------------------------------------
 
 Kata taken from https://www.codewars.com/kata/56484848ba95170a8000004d/train/csharp
-For Best Practice Solutions: 
+For Best Practice Solutions: https://www.codewars.com/kata/56484848ba95170a8000004d/solutions/csharp
 
 ---------------------------------------
 

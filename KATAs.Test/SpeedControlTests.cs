@@ -35,6 +35,18 @@ namespace KATAs.Test
         }
 
         [TestMethod]
+        public void Test003_GivenSpeedControl_WhenMoreThanTwoDistanceSamplesExist_ThenReturnTheCorrectSpeed()
+        {
+            double[] distanceSamples = new double[] { 0.0, 0.19, 0.5, 0.75, 1.0, 1.25, 1.5, 1.75, 2.0, 2.25 };
+            int seconds = 15;
+
+            int expectedResult = 74;
+            int actualResult = SpeedControl.GetMaxAverageSpeedPerHour(seconds, distanceSamples);
+
+            Assert.AreEqual(expectedResult, actualResult);
+        }
+
+        [TestMethod]
         public void TestHelperMethod001_GivenSpeedControl_WhenGetDistanceSegmentsHelperMethodIsCalled_ThenReturnTheDistanceBetweenEachSegment()
         {
             double[] distanceSamples = new double[] { 0.0, 0.19, 0.5, 0.75, 1.0, 1.25, 1.5, 1.75, 2.0, 2.25 };
